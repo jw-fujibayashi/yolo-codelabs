@@ -1,0 +1,17 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-05-25T13:40:55+09:00",
+  "id": "yolo",
+  "duration": 90,
+  "title": "tensorflow2.0 YOLOv3",
+  "summary": "yolov3",
+  "source": "test.md",
+  "theme": "",
+  "status": null,
+  "category": null,
+  "tags": [],
+  "url": "yolo"
+}
