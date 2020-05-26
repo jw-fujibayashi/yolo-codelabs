@@ -14,25 +14,25 @@ Duration: 10
 以下の画像は、「グー」「チョキ」「パー」の手の形を学習させて検出させている様子です。画像などを用意するのは単純作業で辛いですが、上手く検出できるとその反面嬉しさも増えるので頑張りましょう。
 
 <!-- ![](https://i.imgur.com/m7mGVq4.jpg) -->
-![img1](img/img1.jpg)
+![img1](img_original/img1.jpg)
 
 ### 今回使用するものについて
 
 #### Google Colaboratory
 
 <!-- ![](https://i.imgur.com/d3qlWm1.png) -->
-![img2](img/img2.png)   
+![img2](img_original/img2.png)   
 Googleが提供する「機械学習/Deep Learningの教育や研究の促進を目的としたプロジェクト」です。ブラウザから操作できるので、環境構築不要です。また、GPUというハイスペックな環境を使用できます。
 
 Google Colaboratoryで使用するファイルを「ノートブック」と呼び、今回はこちらが用意したノートブックを使用します。
 
 <!-- ![](https://i.imgur.com/xCTfskl.png) -->
-![img3](img/img3.png)   
+![img3](img_original/img3.png)   
 
 このように、ノートブックにはプログラミング言語だけではなく、ドキュメントも合わせて記すことができます。
 
 <!-- ![](https://i.imgur.com/4IYIf27.png) -->
-![img5](img/img5.png)   
+![img5](img_original/img5.png)   
 
 こちらにプログラミングコードが記述されます。セル毎に分かれていますが、環境や変数などは同一ノートブック内では共通されます。
 <!-- ![](https://i.imgur.com/OGij9Ld.png) -->
@@ -44,7 +44,7 @@ Google Colaboratoryについて気になる方は公式の[説明](https://colab
 #### ラズベリーパイ
 
 <!-- ![](https://i.imgur.com/EWQhbEh.jpg) -->
-![img6](img/img6.jpg)
+![img6](img_original/img6.jpg)
 
 「ラズベリーパイ」は、必要最低限な機能を備えた小型PCです。その分スペックは低いですが数千円で購入できる手軽さから、子ども用のプログラミング入門キットとしてだけでなく、大学の工学部や情報学部などでの授業に取り入れられてます。また大人も楽しめる趣味として世界中で幅広い層に利用されています。
 
@@ -53,7 +53,7 @@ Google Colaboratoryについて気になる方は公式の[説明](https://colab
 #### VoTT
 
 <!-- ![](https://i.imgur.com/dOZEdjv.jpg) -->
-![img7](img/img7.jpg)
+![img7](img_original/img7.jpg)
 
 マイクロソフトが開発している[VoTT](https://github.com/microsoft/VoTT)を使って、アノテーションと呼ばれる作業を行います。詳しい説明は、後述しますが作業を補助する機能がついていて便利です。
 
@@ -81,19 +81,19 @@ Duration: 10
 [こちら](https://colab.research.google.com/drive/1FzwCZIIsqvSDktRDWVclO_jokT55qoA0?usp=sharing)をクリックして開いてください。
 
 <!-- ![](https://i.imgur.com/b1L4A3k.png) -->
-![img8](img/img8.png)
+![img8](img_original/img8.png)
 
 開いたら「ファイル」 > 「ドライブにコピーを保存」をクリックします。これでみなさんのドライブにコピーが作成されます。
 
 <!-- ![](https://i.imgur.com/bygQXEG.png) -->
-![img9](img/img9.png)
+![img9](img_original/img9.png)
 
 ただし、このコピーししたノートブックは実行できる状態ではないので「ファイル」>「Playgroundモードで開く」をクリックして実行できるように変更する。
 
 コピーできたら、1つ目のセル「1.Google Colaboratory テスト用コード」を試しに実行してみましょう！実行するには、`ctrl`+`Enter`(Macの場合は、`cmd`+`Enter`)です。もしくは、再生ボタンをクリックします。
 
 <!-- ![](https://i.imgur.com/oGL2h4c.png) -->
-![img10](img/img10.png)  
+![img10](img_original/img10.png)  
 
 このようになれば問題ありません。
 
@@ -104,37 +104,37 @@ Duration: 10
 「2.Google Driveとの連携」を実行しましょう。
 
 <!-- ![](https://i.imgur.com/51i8BWm.png) -->
-![img11](img/img11.png)
+![img11](img_original/img11.png)
 
 実行すると、このようにリンクが現れるのでクリックして開きます。
 
 <!-- ![](https://i.imgur.com/Flp7a2r.png) -->
-![img12](img/img12.png)
+![img12](img_original/img12.png)
 
 クリックすると、連携先のGoogleアカウントを選びます。複数のアカウントを持っている方は、ノートブックをコピーしたアカウントを選んでください。
 
 <!-- ![](https://i.imgur.com/CBWAWm0.png) -->
-![img13](img/img13.png)
+![img13](img_original/img13.png)
 
 「許可」を押します。
 
 <!-- ![](https://i.imgur.com/MK8qC3d.png) -->
-![img14](img/img14.png)
+![img14](img_original/img14.png)
 
 赤色で隠されている部分をコピーします。赤枠箇所をクリックすると自動でコピーされます。
 
 <!-- ![](https://i.imgur.com/uJkHczM.png) -->
-![img15](img/img15.png)
+![img15](img_original/img15.png)
 
 コピーできたら、ノートブックに戻ってこの箇所に貼り付けて、`Enter`を押します。
 
 <!-- ![](https://i.imgur.com/zqQBbKR.png) -->
-![img16](img/img16.png)
+![img16](img_original/img16.png)
 
 少し時間が経って、このように表示されると連携の終了です。
 
 <!-- ![](https://i.imgur.com/LDzl5ik.png) -->
-![img17](img/img17.png)
+![img17](img_original/img17.png)
 
 左側のフォルダマークをクリックすると、`drive`フォルダーが表示され、ここでdrive内のファイルを確認できます。
 
@@ -145,7 +145,7 @@ Duration: 10
 実行すると、Google Driveの`Colabo NoteBooks`というフォルダーの中に`yolo-tf2-test`というフォルダーが自動でダウンロードされます。
 
 <!-- ![](https://i.imgur.com/g4MUDdm.png) -->
-![img18](img/img18.png)
+![img18](img_original/img18.png)
 
 このようにDrive内の`Colab Notebooks`フォルダー内にダウンロードされます。
 
@@ -169,14 +169,14 @@ YOLOとは、物体検出の手法の1つです。「v3」というのは、そ�
 まずは、YOLOがどのように物体検出を行っているのか簡単なイメージで解説します。v3での改善点は最後に解説します。
 
 <!-- ![](https://i.imgur.com/9qsnhf0.png) -->
-![img19](img/img19.png)  
+![img19](img_original/img19.png)  
 
 https://pjreddie.com/ から引用
 
 YOLOでは、まず対象の画像をいくつかのセルに分けます。この各セルに対して、「物体領域検出（どこに物体があるのか）」と「画像認識（そのセルが何なのか）」を行います。
 
 <!-- ![](https://i.imgur.com/KtT7V0n.png) -->
-![img20](img/img20.png)  
+![img20](img_original/img20.png)  
 
 https://pjreddie.com/ から引用
 
@@ -184,21 +184,21 @@ https://pjreddie.com/ から引用
 物体が存在していなければ、信頼度スコアは0になります。
 
 <!-- ![](https://i.imgur.com/37GEo38.png) -->
-![img21](img/img21.png)  
+![img21](img_original/img21.png)  
 
 https://pjreddie.com/ から引用
 
 上の画像が「画像認識」の様子です。各セルに対して画像認識を行い、そのセルがどういった画像なのかを計算します。
 
 <!-- ![](https://i.imgur.com/69exYVz.png) -->
-![img22](img/img22.png)
+![img22](img_original/img22.png)
 
 https://pjreddie.com/ から引用
 
 上記の「物体領域検出」と「画像認識」の結果を合わせることで、最終的に「物体検出」を行います。
 
 <!-- ![](https://i.imgur.com/Bq5716P.png) -->
-![img23](img/img23.png)  
+![img23](img_original/img23.png)  
 
 https://qiita.com/mdo4nt6n/items/68dcda71e90321574a2b から引用
 
@@ -273,12 +273,12 @@ Duration: 10
 ノートブックに戻って、ダウンロードが完了していたら「5.テスト」を実行しましょう。
 
 <!-- ![](https://i.imgur.com/1y96u5X.jpg) -->
-![img24](img/img24.jpg)
+![img24](img_original/img24.jpg)
 
 このように画像が出てきたらテストには問題ありません。検出が上手くいっていなくても大丈夫です。おそらくtinyのため精度が低いのでしょう。
 
 <!-- ![](https://i.imgur.com/FYsQcjM.jpg) -->
-![img25](img/img25.jpg)
+![img25](img_original/img25.jpg)
 
 ちなみに、tinyではなく通常の重みを使用すると高精度に検出してくれます。
 
@@ -297,7 +297,7 @@ display_jpeg(Image('output.jpg'))
 また、他の画像を使用することもできます。
 
 <!-- ![](https://i.imgur.com/Xbgknwa.png) -->
-![img26](img/img26.png)
+![img26](img_original/img26.png)
 
 左のフォルダマークをクリックして、`drive` > `My Drive` > `Colab Notebooks` > `yolo-tf2-test` > `data`の順にクリックしていきます。
 
@@ -341,11 +341,31 @@ Duration: 10
 
 まずは、用意した画像を`original_images`という名前のフォルダーにまとめてください。まとめたら`original_images.zip`とzip形式に圧縮してください。
 
+自動でリサイズなど行うため、用意する画像のサイズや拡張子はなんでもOKです。ただし、拡張子は揃えておいた方がほんの少しだけ楽です。
+スマートフォンで撮った写真を使っても大丈夫です。
+
+![img26-1](img_original/img26-1.png)
+
+画像はどういったものでも問題ありませんが、始めはシンプルに検出したい物だけを映すことをオススメします。まずは、シンプルなデータで学習して物体検出を体感してみましょう。
+
 圧縮したらGoogle Driveの`data`フォルダー内にアップロードします。アップロードしたら「6.オリジナルデータの解凍」を実行します。アップロードしたzipフォルダーを解凍します。
+
+![img26-2](img_original/img26-2.png)
+
+画像をさらにフォルダー毎に分ける必要はありません。上の画像のように、画像データだけを`original_images`フォルダーに入れてください。
 
 ### 7.データの整形
 
 解凍が終わったら「7.データの整形」を行い、416*416サイズに変更します。サイズ変更した画像は`resized_images`に保存されます。
+
+実行する前に拡張子をプログラム内で指定する必要があります。
+
+```python
+extension = 'jpg'
+```
+8行目の`jpg`の箇所を皆さんのデータの拡張子に揃えてください。
+
+トリミングではなく、1:1となるようにリサイズし足りない箇所は白色で埋めるようにしています。
 
 ### 8.画像の水増し
 
@@ -387,17 +407,17 @@ Duration: 10
 まずは、VoTTを[こちら](https://github.com/Microsoft/VoTT/releases)からダウンロードしてください。
 
 <!-- ![](https://i.imgur.com/pWx2odP.png) -->
-![img27](img/img27.png)
+![img27](img_original/img27.png)
 
 自分のOSに合わせて`.dmg`,`.snap`,`.exe`ファイルのどれかをダウンロードしてください。ダウンロードしたらファイルを実行して、VoTTを立ち上げましょう。
 
 <!-- ![](https://i.imgur.com/fN6RNbs.png) -->
-![img28](img/img28.png)
+![img28](img_original/img28.png)
 
 立ち上がったら`New Project`を選びます。
 
 <!-- ![](https://i.imgur.com/nBW0G9v.png) -->
-![img29](img/img29.png)
+![img29](img_original/img29.png)
 
 プロジェクトの名前などを設定します。
 
@@ -414,7 +434,7 @@ Tagsに検出したい画像の名前を追加してください。
 Source / Target Connectionは、まずは`Add Connection`から新しく作成する必要があります。
 
 <!-- ![](https://i.imgur.com/szcHprr.png) -->
-![img30](img/img30.png)
+![img30](img_original/img30.png)
 
 - Display Name: Connectionimの名前
 - Provider: Local File Systemを選ぶ
@@ -423,14 +443,14 @@ Source / Target Connectionは、まずは`Add Connection`から新しく作成�
 出力先のフォルダーは、別途`out`のような名前のフォルダーを追加するとわかりやすいです。
 
 <!-- ![](https://i.imgur.com/qnm3aiF.png) -->
-![img31](img/img31.png)
+![img31](img_original/img31.png)
 
 このようにダウンロードしてきた`changed_images`をSource　Connectionに設定し、その中に`out`を作ってTarget Connectionにするのがお勧めです。
 
 それぞれ設定できたら`Save Connection`をクリックします。これでアノテーションに入れますが、もう少し設定を変更します。
 
 <!-- ![](https://i.imgur.com/TZgGh3S.png) -->
-![img32](img/img32.png)
+![img32](img_original/img32.png)
 
 まずは、左の上から4つ目のアイコンをクリックして、出力形式を上記画像のように変更します。
 
@@ -441,7 +461,7 @@ Source / Target Connectionは、まずは`Add Connection`から新しく作成�
 変更したら、`Save Export Settings`をクリックします。
 
 <!-- ![](https://i.imgur.com/PzS3Ley.png) -->
-![img33](img/img33.png)
+![img33](img_original/img33.png)
 
 次に、左の上から5番目のアイコンをクリックして、上記のように設定します。VoTTの機能でアノテーションを補助してくれます。ここでは、自動でバウンディングボックスをつけるようにしています。不要なバウンディングボックスが多ければ、`Auto Detect`のチェックマークを外してください。
 
@@ -450,7 +470,7 @@ Source / Target Connectionは、まずは`Add Connection`から新しく作成�
 これで設定はお終いです。左の上から2番目をクリックしてアノテーション作業に入ります。
 
 <!-- ![](https://i.imgur.com/JxNBQfN.jpg) -->
-![img34](img/img34.jpg)
+![img34](img_original/img34.jpg)
 
 直感的に操作できるUIですが、簡単に操作説明をします。
 
@@ -482,23 +502,23 @@ Duration: 10
 アノテーション作業が終わったら、VoTTから必要なデータを出力します。出力ボタンを押すだけで、Target Connectionに設定したフォルダーにデータが出力されます。
 
 <!-- ![](https://i.imgur.com/A8NxHu7.png) -->
-![img35](img/img35.png)
+![img35](img_original/img35.png)
 
 右上にこのようなポップが表示されたら無事出力成功です。
 
 <!-- ![](https://i.imgur.com/rW8Cq0P.png) -->
-![img36](img/img36.png)
+![img36](img_original/img36.png)
 
 このようなポップが出てきた場合は、失敗です。原因不明でたまに失敗します。
 プロジェクトを保存して、一度VoTTを閉じて再度起動して出力ボタンを再度押してください。また、失敗したらこれを繰り返してください。
 
 <!-- ![](https://i.imgur.com/73l2dON.png) -->
-![img37](img/img37.png)
+![img37](img_original/img37.png)
 
 Target Connectionには、このようにjsonデータが大量に生成されています。今回必要なのは`~~~~~ -PascalVOC-export`というフォルダーです（変更日など時間でソートをすると見つけやすいです。）。
 
 <!-- ![](https://i.imgur.com/LdrErYw.png) -->
-![img38](img/img38.png)
+![img38](img_original/img38.png)
 
 このフォルダーを`train_images`に名前を変えて、zip形式に圧縮します。圧縮したら、Google Driveにアップロードします。アップロード先は、同様に`data`フォルダー内です。
 
@@ -528,7 +548,7 @@ augment_size = 1 # 画像の水増し量
 設定したら「11.tfrecordの作成」を実行してください。
 
 <!-- ![](https://i.imgur.com/6mSVsvk.png) -->
-![img39](img/img39.png)
+![img39](img_original/img39.png)
 
 実行すると`data`フォルダに`train`,`val`,`test`の3つのtfrecordが生成されます。ファイル名は、`tf_file_name`で指定した文字列 + `_train`,`_val`,`_test`となります。
 
@@ -586,7 +606,7 @@ Duration: 10
 
 まずは、ラズパイを起動してターミナルを起動します。
 <!-- ![](https://i.imgur.com/TObmSv7.png) -->
-![img40](img/img40.png)
+![img40](img_original/img40.png)
 
 ラズパイのホーム画面の左上の赤枠をクリックするか`Ctrl`+`Alt`+`t`のショートカットキーでも起動できます。
 
