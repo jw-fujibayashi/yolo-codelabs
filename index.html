@@ -59,24 +59,23 @@
 <li>学習</li>
 <li>推論（検出）</li>
 </ol>
-<p>今回だと、6,7が「学習データの作成」、8が「学習」、9が「推論（検出）」となります。</p>
 <p>オリジナルデータで物体検出をするために、まずは学習データを皆さんに作成してもらいます。</p>
 <p>その後、上述したGoogle Colaboratoryで学習を行い、最後にラズパイでリアルタイム画像検出を行います。</p>
 <h2 is-upgraded>事前準備</h2>
 <p>まずは、YOLOv3の講義から入りたいところですが、いくつか時間のかかる作業があるのでそちらを先に済ませます。</p>
-<h3 is-upgraded>1.ノートブックのコピー</h3>
+<h3 is-upgraded>ノートブックのコピー</h3>
 <p>まずは、今回用意したノートブックをみなさんのGoogle Driveにコピーします。</p>
 <p><a href="https://colab.research.google.com/drive/1FzwCZIIsqvSDktRDWVclO_jokT55qoA0?usp=sharing" target="_blank">こちら</a>をクリックして開いてください。</p>
 <p class="image-container"><img alt="img8" src="img/1f1b17bf6ad7de10.png"></p>
 <p>開いたら「ファイル」 &gt; 「ドライブにコピーを保存」をクリックします。これでみなさんのドライブにコピーが作成されます。</p>
 <p class="image-container"><img alt="img9" src="img/881edadd7f10bb84.png"></p>
 <p>ただし、このコピーししたノートブックは実行できる状態ではないので「ファイル」&gt;「Playgroundモードで開く」をクリックして実行できるように変更する。</p>
-<p>コピーできたら、1つ目のセル「1.Google Colaboratory テスト用コード」を試しに実行してみましょう！実行するには、<code>ctrl</code>+<code>Enter</code>(Macの場合は、<code>cmd</code>+<code>Enter</code>)です。もしくは、再生ボタンをクリックします。</p>
+<p>コピーできたら、1つ目のセル「A.Google Colaboratoryテスト用コード」を試しに実行してみましょう！実行するには、<code>ctrl</code>+<code>Enter</code>(Macの場合は、<code>cmd</code>+<code>Enter</code>)です。もしくは、再生ボタンをクリックします。</p>
 <p class="image-container"><img alt="img10" src="img/7b0321253f13556a.png"></p>
 <p>このようになれば問題ありません。</p>
-<h3 is-upgraded>2.Google Drive との連携</h3>
+<h3 is-upgraded>Google Driveとの連携</h3>
 <p>無事にノートブックをコピーできて、実行できるようになったら作業を進めていきます。まずは、Google DriveとGoogle Colaboratoryを連携させます。</p>
-<p>「2.Google Driveとの連携」を実行しましょう。</p>
+<p>「B.Google Driveとの連携」を実行しましょう。</p>
 <p class="image-container"><img alt="img11" src="img/72c64caa266fcff3.png"></p>
 <p>実行すると、このようにリンクが現れるのでクリックして開きます。</p>
 <p class="image-container"><img alt="img12" src="img/7d4a556199ce1efe.png"></p>
@@ -91,14 +90,14 @@
 <p>少し時間が経って、このように表示されると連携の終了です。</p>
 <p class="image-container"><img alt="img17" src="img/def64f4360bee970.png"></p>
 <p>左側のフォルダマークをクリックすると、<code>drive</code>フォルダーが表示され、ここでdrive内のファイルを確認できます。</p>
-<h3 is-upgraded>3. Gitプロジェクトのダウンロード</h3>
-<p>今回使用するソースコードをダウンロードします。「3.使用するgitプロジェクトをダウンロード」を実行しましょう。</p>
+<h3 is-upgraded>Gitプロジェクトのダウンロード</h3>
+<p>今回使用するソースコードをダウンロードします。「C.gitプロジェクトをダウンロード」を実行しましょう。</p>
 <p>実行すると、Google Driveの<code>Colabo NoteBooks</code>というフォルダーの中に<code>yolo-tf2-test</code>というフォルダーが自動でダウンロードされます。</p>
 <p class="image-container"><img alt="img18" src="img/f8f9fb251f352e63.png"></p>
 <p>このようにDrive内の<code>Colab Notebooks</code>フォルダー内にダウンロードされます。</p>
-<h3 is-upgraded>4. 重みのダウンロードと変換</h3>
-<p>後ほど使う、「重み」というものをダウンロードし変換します。ダウンロードには時間がかなりかかります。 「4.重みのダウンロードと変換」を実行しましょう。</p>
-<p>ダウンロードしている間に、次の「簡単なYOLOv3の仕組みについて講義」を確認しましょう。</p>
+<h3 is-upgraded>重みのダウンロードと変換</h3>
+<p>後ほど使う、「重み」というものをダウンロードし変換します。ダウンロードには時間がかかります。 「D.重みのダウンロードと変換」を実行しましょう。</p>
+<p>ダウンロードしている間に、次のスライドを確認しましょう。</p>
 <h2 is-upgraded>YOLOv3とは</h2>
 <p>それでは、今回試す「YOLO」について簡単に解説したいと思います。</p>
 <p>難しい内容ですが、理解できなくてもプログラムを実行して物体検出を体験できますので安心してください。そういうものなのか、という程度で読み流してもらえればと思います。</p>
@@ -161,8 +160,7 @@
 <p>「水増し」という言葉の印象はあまりよくありませんが、単純に学習データとなる画像をプログラムを使って複製するだけです。つまり、元の画像枚数が20枚しか</p>
 <p>自分が試したところ、1つのクラスに対して20種類ぐらいの画像がを用いると水増しが上手く効果してくれました。</p>
 <h2 is-upgraded>テスト</h2>
-<p>最後に、必要なデータが無事にダウンロードできているかをテストします。</p>
-<p>ノートブックに戻って、ダウンロードが完了していたら「5.テスト」を実行しましょう。</p>
+<p>ノートブックに戻って、重みのダウンロードが完了していたら「E.テスト」を実行しましょう。</p>
 <p class="image-container"><img alt="img24" src="img/76fd45ee8aac4c41.jpg"></p>
 <p>このように画像が出てきたらテストには問題ありません。検出が上手くいっていなくても大丈夫です。おそらくtinyのため精度が低いのでしょう。</p>
 <p class="image-container"><img alt="img25" src="img/d53597a3fe7959df.jpg"></p>
@@ -179,7 +177,7 @@ display_jpeg(Image(&#39;output.jpg&#39;))
 <p>先ほどtinyではない重みもダウンロードした方はこちらを実行すればテストできます。</p>
 <p>また、他の画像を使用することもできます。</p>
 <p class="image-container"><img alt="img26" src="img/fdb93cccb1fd01ad.png"></p>
-<p>左のフォルダマークをクリックして、<code>drive</code> &gt; <code>My Drive</code> &gt; <code>Colab Notebooks</code> &gt; <code>yolo-tf2-test</code> &gt; <code>data</code>の順にクリックしていきます。</p>
+<p>左のフォルダマークをクリックして、<code>drive</code> &gt; <code>My Drive</code> &gt; <code>Colab Notebooks</code> &gt; <code>yolo-tf2-test</code> &gt; <code>data</code>の順にクリックします。</p>
 <p>そして、検出させたい画像を最後の<code>data</code>フォルダーの中にアップロードします。そのままドラッグアンドドロップするか赤枠のアップロードから画像を選ぶだけです。</p>
 <pre><code># tiny
 !python detect.py --weights ./data/weight/yolov3-tiny.tf --tiny --image ./data/meme.jpg # ← `meme.jpg` の箇所を検出したい画像ファイル名にする
@@ -205,34 +203,34 @@ display_jpeg(Image(&#39;output.jpg&#39;))
 
       </google-codelab-step>
     
-      <google-codelab-step label="学習データの前準備" duration="10">
-        <p>テストが終わったら次は、任意の物を検出する重みを作成します。そのためには、まずは学習データを用意する必要があります。</p>
+      <google-codelab-step label="学習データの作成" duration="10">
+        <p>それでは、学習データを作成してきます。</p>
 <p>物体検出の場合、学習データは「画像」と「バウンディングボックス（正確にはバウンディングボックスの座標位置）」となります。</p>
 <p>画像は、みなさんが用意したものを使用します。その画像に「VoTT」というツールを使って検出したい箇所にバウディングボックスをつけていきます（この作業をアノテーションと呼びます）。</p>
-<h2 is-upgraded>6.オリジナルデータの解凍</h2>
+<h2 is-upgraded>オリジナルデータの解凍</h2>
 <p>まずは、用意した画像を<code>original_images</code>という名前のフォルダーにまとめてください。まとめたら<code>original_images.zip</code>とzip形式に圧縮してください。</p>
-<p>自動でリサイズなど行うため、用意する画像のサイズや拡張子はなんでもOKです。ただし、拡張子は揃えておいた方がほんの少しだけ楽です。 スマートフォンで撮った写真を使っても大丈夫です。</p>
+<p>用意する画像のサイズや拡張子はなんでもOKです（後ほど自動でリサイズします。）。拡張子は揃えておいた方がほんの少しだけ楽です。 スマートフォンで撮った写真を使っても大丈夫です。</p>
 <p class="image-container"><img alt="img26-1" src="img/28e894533071359.png"></p>
 <p>画像はどういったものでも問題ありませんが、始めはシンプルに検出したい物だけを映すことをオススメします。まずは、シンプルなデータで学習して物体検出を体感してみましょう。</p>
-<p>圧縮したらGoogle Driveの<code>data</code>フォルダー内にアップロードします。アップロードしたら「6.オリジナルデータの解凍」を実行します。アップロードしたzipフォルダーを解凍します。</p>
+<p>圧縮したらGoogle Driveの<code>data</code>フォルダー内にアップロードします。アップロードしたら「F.オリジナルデータの解凍」を実行します。アップロードしたzipフォルダーを解凍します。</p>
 <p class="image-container"><img alt="img26-2" src="img/11e6b736a5291311.png"></p>
 <p>画像をさらにフォルダー毎に分ける必要はありません。上の画像のように、画像データだけを<code>original_images</code>フォルダーに入れてください。</p>
-<h2 is-upgraded>7.データの整形</h2>
-<p>解凍が終わったら「7.データの整形」を行い、416*416サイズに変更します。サイズ変更した画像は<code>resized_images</code>に保存されます。</p>
+<h2 is-upgraded>データの整形</h2>
+<p>解凍が終わったら「G.データの整形」を行い、416*416サイズに変更します。サイズ変更した画像は<code>resized_images</code>に保存されます。</p>
 <p>実行する前に拡張子をプログラム内で指定する必要があります。</p>
 <pre><code>extension = &#39;jpg&#39;
 </code></pre>
 <p>8行目の<code>jpg</code>の箇所を皆さんのデータの拡張子に揃えてください。</p>
 <p>トリミングではなく、1:1となるようにリサイズし足りない箇所は白色で埋めるようにしています。</p>
-<h2 is-upgraded>8.画像の水増し</h2>
+<h2 is-upgraded>画像の水増し</h2>
 <p>次に画像の水増しを行います。</p>
 <pre><code>############
 volume = 60 # 1枚あたりどれだけ増やすか
 img_name = &#39;img&#39; # 生成された画像のファイル名
 ############
 </code></pre>
-<p>この箇所の数値を変更することで、画像１枚に対して水増しする量を調整できます。上記の例の場合、1枚に対しておよそ60枚複製されることになります。</p>
-<p>枚数を決定したら「8.画像の水増し」を実行しましょう。最初は1クラスに対して合計100枚ぐらいになるように設定することをお勧めします。一度簡単に試してみて上手く検出できていたら画像を増やしていく方が効率的です。</p>
+<p>この箇所の数値を変更することで、画像1枚に対して水増しする量を調整できます。上記の例の場合、1枚に対しておよそ60枚複製されることになります。</p>
+<p>枚数を決定したら「H.画像の水増し」を実行しましょう。最初は1クラスに対して合計100枚ぐらいになるように設定することをオススメします。一度簡単に試してみて上手く検出できていたら画像を増やしていく方が効率的です。</p>
 <p>また、新たに画像を追加する場合は、<code>img_name = &#39;img&#39;</code>の<code>img</code>部分を変更して、水増しされた画像のファイル名が被らないようにしましょう（言ってることがわかりにくい方は、実際に水増しされたあとの画像ファイル名を確認してみるとわかりやすいです。）。</p>
 <pre><code>datagen = ImageDataGenerator(
     channel_shift_range=30,
@@ -244,8 +242,8 @@ img_name = &#39;img&#39; # 生成された画像のファイル名
 </code></pre>
 <p>画像の水増しは、ただ複製するだけではなく、少し加工した上で複製を行います。パラメーターについては、すべてが解説されているわけではありませんが<a href="https://qiita.com/takurooo/items/c06365dd43914c253240" target="_blank">こちら</a>で詳しく解説されています。</p>
 <p>ここも調整することで精度が変化するので各自色々と試してみましょう。</p>
-<h2 is-upgraded>9.変形した画像を圧縮してダウンロード</h2>
-<p>データを水増しができたら最後に「9.変形した画像を圧縮してダウンロード」を実行します。実行すると自動でダウンロードされますが、たまに、ポップアップが出現しダウンロードの許可ボタンを押す必要がありますので注意してください。</p>
+<h2 is-upgraded>変形した画像を圧縮してダウンロード</h2>
+<p>データを水増しができたら最後に「I.変形した画像を圧縮してダウンロード」を実行します。実行すると自動でダウンロードされますが、たまに、ポップアップが出現しダウンロードの許可ボタンを押す必要がありますので注意してください。</p>
 
 
       </google-codelab-step>
@@ -318,8 +316,8 @@ img_name = &#39;img&#39; # 生成された画像のファイル名
     
       <google-codelab-step label="学習" duration="10">
         <p>次に学習を実行します。画像の量に応じて、「画像の解凍」「tfrecordへの変換」「学習」それぞれに時間がかかります。</p>
-<h2 is-upgraded>10.画像の解凍</h2>
-<p>アノテーション作業が終わったら、VoTTから必要なデータを出力します。出力ボタンを押すだけで、Target Connectionに設定したフォルダーにデータが出力されます。</p>
+<h2 is-upgraded>画像の解凍</h2>
+<p>アノテーション作業が終わったら、VoTTから必要なデータを出力します。出力ボタンを押すだけで、Target Connectionで設定したフォルダーにデータが出力されます。</p>
 <p class="image-container"><img alt="img35" src="img/5b1f920030068f40.png"></p>
 <p>右上にこのようなポップが表示されたら無事出力成功です。</p>
 <p class="image-container"><img alt="img36" src="img/d2731d25caca9ddd.png"></p>
@@ -328,14 +326,14 @@ img_name = &#39;img&#39; # 生成された画像のファイル名
 <p>Target Connectionには、このようにjsonデータが大量に生成されています。今回必要なのは<code>~~~~~ -PascalVOC-export</code>というフォルダーです（変更日など時間でソートをすると見つけやすいです。）。</p>
 <p class="image-container"><img alt="img38" src="img/be17770cebcf72fd.png"></p>
 <p>このフォルダーを<code>train_images</code>に名前を変えて、zip形式に圧縮します。圧縮したら、Google Driveにアップロードします。アップロード先は、同様に<code>data</code>フォルダー内です。</p>
-<p>アップロードできたら「10.画像の解凍」を実行してください。</p>
-<h2 is-upgraded>11.tfrecordの作成</h2>
+<p>アップロードできたら「J.画像の解凍」を実行してください。</p>
+<h2 is-upgraded>tfrecordの作成</h2>
 <p>次に用意したデータを「tfrecord」という形式に変換します。tfrecordとは、tensorflowが推奨する軽量なデータフォーマットです。</p>
 <p>大量の学習データを1つにまとめていきます。また、合わせてデータの水増しも行っています。</p>
-<p>「11.tfrecordの作成」を実行する前に、9~11行目を変更してください。</p>
+<p>「K.tfrecordの作成」を実行する前に、9~11行目を変更してください。</p>
 <ul>
 <li><code>classes_list</code>: VoTTで使用したタグ名を記載（順番は関係なし）</li>
-<li><code>tf_file_name</code>: tfrecordのファイル名（分かりやすければなんでもよし）</li>
+<li><code>tf_file_name</code>: tfrecordのファイル名</li>
 <li><code>augment_size</code>: 画像の水増しの量</li>
 </ul>
 <pre><code>classes_list = [&#39;rock&#39;, &#39;scisor&#39;, &#39;paper&#39;] # タグ(順番はVoTTと一致していなくても大丈夫)
@@ -343,29 +341,29 @@ tf_file_name = &#39;hand&#39; # ファイル名
 augment_size = 1 # 画像の水増し量
 </code></pre>
 <p>このような感じで変更してください。 水増し量は、各画像に対して何枚増やすかになります。そのため、数枚程度に留めておいた方が良いと思います。</p>
-<p>設定したら「11.tfrecordの作成」を実行してください。</p>
+<p>設定したら「K.tfrecordの作成」を実行してください。</p>
 <p class="image-container"><img alt="img39" src="img/7cd5768231676e8f.png"></p>
 <p>実行すると<code>data</code>フォルダに<code>train</code>,<code>val</code>,<code>test</code>の3つのtfrecordが生成されます。ファイル名は、<code>tf_file_name</code>で指定した文字列 + <code>_train</code>,<code>_val</code>,<code>_test</code>となります。</p>
 <p>それぞれ訓練用、検証用、テスト用です。</p>
-<h2 is-upgraded>12.tfrecordの表示</h2>
-<p>tfrecordを作成できたら、テストとして表示させてみます。「12.tfrecordの表示」を実行する前に、14,15行目を設定します。</p>
+<h2 is-upgraded>tfrecordの表示</h2>
+<p>tfrecordを作成できたら、テストとして表示させてみます。「L.tfrecordの表示」を実行する前に、14,15行目を設定します。</p>
 <pre><code>#######################
 tfrecord_name = &#39;hand&#39; # tfrecordの名前
 tfrecord_kind = &#39;train&#39; # tfrecotdの種類, train, val, test のどれか
 #######################
 </code></pre>
 <p><code>tfrecord_name</code>は表示させたいtfrecodのファイル名を、<code>tfrecord_lind</code>にはtrain,val,testのどれかを設定します。</p>
-<p>設定したら「12.tfrecordの表示」を実行しましょう。</p>
+<p>設定したら「L.tfrecordの表示」を実行しましょう。</p>
 <p>バウンディングボックスのついた画像が表示されると思います。</p>
-<h2 is-upgraded>13.学習</h2>
+<h2 is-upgraded>学習</h2>
 <p>これで学習データの準備ができました。次に学習を行っていきます。</p>
-<p>「13.学習」を実行する前に、25,26行目を変更してください。</p>
+<p>「M.学習」を実行する前に、25,26行目を変更してください。</p>
 <pre><code>###################################
 your_weight_name = &#39;cola_tea_monster_test&#39;
 tfrecord_name = &#39;cola_tea_monster&#39;
 ###################################
 </code></pre>
-<p>保存する重みのファイル名、学習の際に使用するtfrecordの名前を設定します。設定したら「13.学習」を実行しましょう。画像の量によって学習にかかる時間は変わりますが、100~200枚程度であれば30~60分で終わると思います。</p>
+<p>保存する重みのファイル名、学習の際に使用するtfrecordの名前を設定します。設定したら「M.学習」を実行しましょう。画像の量によって学習にかかる時間は変わりますが、100~200枚程度であれば30~60分で終わると思います。</p>
 <p>また、ディープラーニングのハイパーパラメーターは、30~34行目で設定できます。</p>
 <pre><code>###################################
 epochs = 100
@@ -401,16 +399,16 @@ tiny = True
       </google-codelab-step>
     
       <google-codelab-step label="物体検出2" duration="10">
-        <h2 is-upgraded>14.物体検出</h2>
+        <h2 is-upgraded>Google Colabo上でテスト</h2>
 <p>無事に学習が終わったら、でき上がった重みを使って物体検出を行っていきます。まずは、Goolge Colaboratory上でテストをしてみます。</p>
-<p>「14.物体検出」を実行する前に、16,17行目を変更してください。</p>
+<p>「N.Google Colabo上でテスト」を実行する前に、16,17行目を変更してください。</p>
 <pre><code>###################################
 your_weight_name = &#39;&#39;
 tfrecord_name = &#39;&#39;
 ###################################
 </code></pre>
 <p><code>your_weight_name</code>にさっきの学習でできた重みファイルの名前を、<code>tfrecord_name</code>に使用したtfrecordの名前を設定します（test用のtfrecordを使用します。<code>_test</code>は不要です。）。</p>
-<p>設定したら実行してください。上手く検出できたでしょうか？納得のいかない精度の場合は、学習データを増やしたりしてみましょう。（学習のコツは次のスライドでまとめています。）</p>
+<p>設定したら「N.Google Colabo上でテスト」を実行してください。上手く検出できたでしょうか？納得のいかない精度の場合は、学習データを増やしたりしてみましょう。（学習のコツは次のスライドでまとめています。）</p>
 <p>それでは、最後にラズパイでリアルタイム物体検出をしてみましょう。まずは、作成した「重みファイル3つ（<code>data</code>&gt;<code>weight</code>フォルダーにあります。）」と「<code>classes.txt</code>（<code>data</code>フォルダーにあります。）」をダウンロードします。</p>
 <p>重みファイルは、<code>data</code>の中の<code>weight</code>フォルダーに移動させましょう。 <code>classes.txt</code>は、<code>data</code>フォルダーに移動させます。既にある<code>classes.txt</code>は上書きしても大丈夫です。</p>
 <p>移動させたらターミナルを開いて、<code>cd Desktop/yolo-tf2-master</code>を実行して</p>
