@@ -62,13 +62,9 @@
 <p>今回だと、6,7が「学習データの作成」、8が「学習」、9が「推論（検出）」となります。</p>
 <p>オリジナルデータで物体検出をするために、まずは学習データを皆さんに作成してもらいます。</p>
 <p>その後、上述したGoogle Colaboratoryで学習を行い、最後にラズパイでリアルタイム画像検出を行います。</p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="事前準備" duration="10">
-        <p>まずは、YOLOv3の講義から入りたいところですが、いくつか時間のかかる作業があるのでそちらを先に済ませます。</p>
-<h2 is-upgraded>1.ノートブックのコピー</h2>
+<h2 is-upgraded>事前準備</h2>
+<p>まずは、YOLOv3の講義から入りたいところですが、いくつか時間のかかる作業があるのでそちらを先に済ませます。</p>
+<h3 is-upgraded>1.ノートブックのコピー</h3>
 <p>まずは、今回用意したノートブックをみなさんのGoogle Driveにコピーします。</p>
 <p><a href="https://colab.research.google.com/drive/1FzwCZIIsqvSDktRDWVclO_jokT55qoA0?usp=sharing" target="_blank">こちら</a>をクリックして開いてください。</p>
 <p class="image-container"><img alt="img8" src="img/1f1b17bf6ad7de10.png"></p>
@@ -78,7 +74,7 @@
 <p>コピーできたら、1つ目のセル「1.Google Colaboratory テスト用コード」を試しに実行してみましょう！実行するには、<code>ctrl</code>+<code>Enter</code>(Macの場合は、<code>cmd</code>+<code>Enter</code>)です。もしくは、再生ボタンをクリックします。</p>
 <p class="image-container"><img alt="img10" src="img/7b0321253f13556a.png"></p>
 <p>このようになれば問題ありません。</p>
-<h2 is-upgraded>2.Google Drive との連携</h2>
+<h3 is-upgraded>2.Google Drive との連携</h3>
 <p>無事にノートブックをコピーできて、実行できるようになったら作業を進めていきます。まずは、Google DriveとGoogle Colaboratoryを連携させます。</p>
 <p>「2.Google Driveとの連携」を実行しましょう。</p>
 <p class="image-container"><img alt="img11" src="img/72c64caa266fcff3.png"></p>
@@ -95,23 +91,18 @@
 <p>少し時間が経って、このように表示されると連携の終了です。</p>
 <p class="image-container"><img alt="img17" src="img/def64f4360bee970.png"></p>
 <p>左側のフォルダマークをクリックすると、<code>drive</code>フォルダーが表示され、ここでdrive内のファイルを確認できます。</p>
-<h2 is-upgraded>3. Gitプロジェクトのダウンロード</h2>
+<h3 is-upgraded>3. Gitプロジェクトのダウンロード</h3>
 <p>今回使用するソースコードをダウンロードします。「3.使用するgitプロジェクトをダウンロード」を実行しましょう。</p>
 <p>実行すると、Google Driveの<code>Colabo NoteBooks</code>というフォルダーの中に<code>yolo-tf2-test</code>というフォルダーが自動でダウンロードされます。</p>
 <p class="image-container"><img alt="img18" src="img/f8f9fb251f352e63.png"></p>
 <p>このようにDrive内の<code>Colab Notebooks</code>フォルダー内にダウンロードされます。</p>
-<h2 is-upgraded>4. 重みのダウンロードと変換</h2>
+<h3 is-upgraded>4. 重みのダウンロードと変換</h3>
 <p>後ほど使う、「重み」というものをダウンロードし変換します。ダウンロードには時間がかなりかかります。 「4.重みのダウンロードと変換」を実行しましょう。</p>
 <p>ダウンロードしている間に、次の「簡単なYOLOv3の仕組みについて講義」を確認しましょう。</p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="講義" duration="0">
-        <p>それでは、今回試す「YOLO」について簡単に解説したいと思います。</p>
+<h2 is-upgraded>YOLOv3とは</h2>
+<p>それでは、今回試す「YOLO」について簡単に解説したいと思います。</p>
 <p>難しい内容ですが、理解できなくてもプログラムを実行して物体検出を体験できますので安心してください。そういうものなのか、という程度で読み流してもらえればと思います。</p>
 <p>YOLOとは、物体検出の手法の1つです。「v3」というのは、そのままバージョン3のことを表します（※2020年5月にv4が考案されたようです。）。物体領域検出と画像認識を同時に行うことでより速く物体検出を行えるのが特徴です（その反面精度は少し落ちています。）。</p>
-<h2 is-upgraded>YOLOの手法について</h2>
 <p>まずは、YOLOがどのように物体検出を行っているのか簡単なイメージで解説します。v3での改善点は最後に解説します。</p>
 <p class="image-container"><img alt="img19" src="img/3d37a0eb652f2dbf.png"></p>
 <p>https://pjreddie.com/ から引用</p>
@@ -128,29 +119,25 @@
 <p class="image-container"><img alt="img23" src="img/2f08226f23f0a101.png"></p>
 <p>https://qiita.com/mdo4nt6n/items/68dcda71e90321574a2b から引用</p>
 <p>一連の流れを画像で表すとこのようになります。</p>
-<h2 is-upgraded>YOLOv3 での改善点</h2>
+<h3 is-upgraded>YOLOv3での改善点</h3>
 <p>上記に加えて、v3ではいくつかの工夫を追加して精度や速度の改善を行いました。</p>
 <ol type="1">
 <li>1/32、1/16、1/8のサイズに分けて物体検出の結果を出力します。複数のサイズに分けることで、さまざまな画像の大きさに対応可能</li>
 <li>物体領域検出の際に使用するバウンディングボックスのサイズを調整</li>
 </ol>
 <p>以上で、YOLOについての簡単な講義は終わりです。詳細が気になる方は、Qiitaや個人のブログなどで取り上げられたりまとめられているのでそちらをご参照ください。</p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="今回のポイント" duration="10">
-        <p>ラズパイで物体検出を簡単に試せるよう、以下の3つの工夫をしました。</p>
+<h2 is-upgraded>今回のポイント</h2>
+<p>ラズパイで物体検出を簡単に試せるよう、以下の3つの工夫をしました。</p>
 <ul>
 <li>転移学習</li>
 <li>YOLOv3-tinyの採用</li>
 <li>画像の水増し</li>
 </ul>
-<h2 is-upgraded>転移学習</h2>
+<h3 is-upgraded>転移学習</h3>
 <p>物体検出は、AIに学習させる時間や必要なデータ数が大量になります。そのため、今回は「転移学習」と呼ばれるものを行い「時間」「データ数」の必要量を減らします。</p>
 <p>簡単に言うと、ある領域で学習させたモデルを別の領域に適応させる技術です。事前に学習されているため、学習に時間がかかりません。たとえば、「犬の種類の画像認識を行うモデル」を「猫の種類の画像認識」に応用できます。</p>
 <p>「4.重みのダウンロードと変換」で今回使用する「学習済みの重み」をダウンロードしました。</p>
-<h2 is-upgraded>YOLOv3-tinyの採用</h2>
+<h3 is-upgraded>YOLOv3-tinyの採用</h3>
 <p>また、YOLOv3-tinyと呼ばれる「正確さよりもリアルタイム性や軽量さを重視したモデル」を使用します。そのため、重みもtiny版をダウンロードしています。</p>
 <p>もし通常のYOLOの重みも試してみたい方は、</p>
 <pre><code>!wget https://pjreddie.com/media/files/yolov3-tiny.weights -O data/yolo_weight/yolov3-tiny.weights
@@ -169,16 +156,12 @@
 !python convert.py --weights ./data/yolo_weight/yolov3.weights --output ./data/weight/yolov3.tf
 </code></pre>
 <p>つまり、これを実行してもらえれば大丈夫です。</p>
-<h2 is-upgraded>学習データの水増し</h2>
+<h3 is-upgraded>学習データの水増し</h3>
 <p>画像認識でもよく採用されている「学習データの水増し」を使って、必要な画像枚数を少なくします。また、この後に作成するアノテーションデータ自体の水増しも行うため、時間短縮できます。</p>
 <p>「水増し」という言葉の印象はあまりよくありませんが、単純に学習データとなる画像をプログラムを使って複製するだけです。つまり、元の画像枚数が20枚しか</p>
 <p>自分が試したところ、1つのクラスに対して20種類ぐらいの画像がを用いると水増しが上手く効果してくれました。</p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="テスト" duration="10">
-        <p>次に、必要なデータが無事にダウンロードできているかをテストします。</p>
+<h2 is-upgraded>テスト</h2>
+<p>最後に、必要なデータが無事にダウンロードできているかをテストします。</p>
 <p>ノートブックに戻って、ダウンロードが完了していたら「5.テスト」を実行しましょう。</p>
 <p class="image-container"><img alt="img24" src="img/76fd45ee8aac4c41.jpg"></p>
 <p>このように画像が出てきたらテストには問題ありません。検出が上手くいっていなくても大丈夫です。おそらくtinyのため精度が低いのでしょう。</p>
