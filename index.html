@@ -59,7 +59,8 @@
 <li>学習</li>
 <li>推論（検出）</li>
 </ol>
-<p>今回はオリジナルデータで物体検出をするために、まずは学習データを皆さんに作成してもらいます。</p>
+<p>今回だと、6,7が「学習データの作成」、8が「学習」、9が「推論（検出）」となります。</p>
+<p>オリジナルデータで物体検出をするために、まずは学習データを皆さんに作成してもらいます。</p>
 <p>その後、上述したGoogle Colaboratoryで学習を行い、最後にラズパイでリアルタイム画像検出を行います。</p>
 
 
@@ -106,7 +107,7 @@
 
       </google-codelab-step>
     
-      <google-codelab-step label="簡単なYOLOv3の仕組みについて講義" duration="0">
+      <google-codelab-step label="講義" duration="0">
         <p>それでは、今回試す「YOLO」について簡単に解説したいと思います。</p>
 <p>難しい内容ですが、理解できなくてもプログラムを実行して物体検出を体験できますので安心してください。そういうものなのか、という程度で読み流してもらえればと思います。</p>
 <p>YOLOとは、物体検出の手法の1つです。「v3」というのは、そのままバージョン3のことを表します（※2020年5月にv4が考案されたようです。）。物体領域検出と画像認識を同時に行うことでより速く物体検出を行えるのが特徴です（その反面精度は少し落ちています。）。</p>
@@ -266,7 +267,7 @@ img_name = &#39;img&#39; # 生成された画像のファイル名
 
       </google-codelab-step>
     
-      <google-codelab-step label="学習データの作成(アノテーション)" duration="10">
+      <google-codelab-step label="学習データの作成" duration="10">
         <p>これで画像を用意できたので、次はアノテーションを行っています。</p>
 <p>まずは、VoTTを<a href="https://github.com/Microsoft/VoTT/releases" target="_blank">こちら</a>からダウンロードしてください。</p>
 <p class="image-container"><img alt="img27" src="img/1b121f40463715ef.png"></p>
@@ -396,7 +397,7 @@ tiny = True
 
       </google-codelab-step>
     
-      <google-codelab-step label="ラズパイで物体検出（ジャンケンの手を検出）" duration="10">
+      <google-codelab-step label="物体検出１" duration="10">
         <p>学習している間にラズパイでの物体検出を体感してもらいます。こちらで用意したジャンケンの手を検出する重みを使用します。</p>
 <p>まずは、ラズパイを起動してターミナルを起動します。 <img alt="img40" src="img/4a9d68c7d025faae.png"></p>
 <p>ラズパイのホーム画面の左上の赤枠をクリックするか<code>Ctrl</code>+<code>Alt</code>+<code>t</code>のショートカットキーでも起動できます。</p>
@@ -416,7 +417,7 @@ tiny = True
 
       </google-codelab-step>
     
-      <google-codelab-step label="テスト＆ラズパイで物体検出（オリジナルデータ）" duration="10">
+      <google-codelab-step label="物体検出2" duration="10">
         <h2 is-upgraded>14.物体検出</h2>
 <p>無事に学習が終わったら、でき上がった重みを使って物体検出を行っていきます。まずは、Goolge Colaboratory上でテストをしてみます。</p>
 <p>「14.物体検出」を実行する前に、16,17行目を変更してください。</p>
