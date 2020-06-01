@@ -27,28 +27,31 @@
                   environment="web"
                   feedback-link="">
     
-      <google-codelab-step label="概要" duration="10">
-        <p>物体検出のアルゴリズムの1つ、YOLOv3をtensorflow2.0で試します。</p>
-<p>自分の好きなものをAIに学習させて検出できるようになりましょう！</p>
-<p>以下の画像は、「グー」「チョキ」「パー」の手の形を学習させて検出させている様子です。画像などを用意するのは単純作業で辛いですが、上手く検出できるとその反面嬉しさも増えるので頑張りましょう。</p>
-<p class="image-container"><img alt="img1" src="img/c9ac60bffbd13d71.jpg"></p>
-<h2 is-upgraded>今回使用するものについて</h2>
+      <google-codelab-step label="初めに" duration="10">
+        <p>本スライドは、物体検出のアルゴリズムの1つ、YOLOv3をtensorflow2.0で試す手順をまとめたものです。</p>
+<p>もちろん既存のデータセットではなく、みなさんが用意したデータを学習させて物体検出を行います。</p>
+<p>以下の画像は、「グー」「チョキ」「パー」の手の形を学習させて検出させている様子です。画像などを用意するのは単純作業で辛いですが、上手く検出できるとその反面嬉しさも倍増するので頑張りましょう。</p>
+<p class="image-container"><img alt="img1" src="img/c678f23ac12099bb.jpeg"></p>
+<h2 is-upgraded>今回使用するサービスやツール</h2>
 <h3 is-upgraded>Google Colaboratory</h3>
-<p><img alt="img2" src="img/a4137426ef8b0a6e.png"><br> Googleが提供する「機械学習/Deep Learningの教育や研究の促進を目的としたプロジェクト」です。ブラウザから操作できるので、環境構築不要です。また、GPUというハイスペックな環境を使用できます。</p>
+<p class="image-container"><img alt="img2" src="img/22b806a5bc948876.jpeg"></p>
+<p>Googleが提供する「機械学習/Deep Learningの教育や研究の促進を目的としたプロジェクト」です。ブラウザから操作できるので、環境構築不要です。また、GPUというハイスペックな環境を使用できます。Googleアカウントがない方は取得しておいてください。</p>
 <p>Google Colaboratoryで使用するファイルを「ノートブック」と呼び、今回はこちらが用意したノートブックを使用します。</p>
-<p class="image-container"><img alt="img3" src="img/208b5b3865d0b68c.png"></p>
-<p>このように、ノートブックにはプログラミング言語だけではなく、ドキュメントも合わせて記すことができます。</p>
-<p class="image-container"><img alt="img5" src="img/51d9d2fd5441a813.png"></p>
-<p>こちらにプログラミングコードが記述されます。セル毎に分かれていますが、環境や変数などは同一ノートブック内では共通されます。 </p>
+<p class="image-container"><img alt="img3" src="img/ef793e64908cb87d.jpeg"></p>
+<p>このように、ノートブックにはプログラミング言語だけではなくドキュメントも記すことができます。</p>
+<p class="image-container"><img alt="img4" src="img/ece79246e200bc4a.jpeg"></p>
+<p>また、セル単位で実行するコードを分けることができます。環境や変数などは同一ノートブック内では共通されます。</p>
 <p>コードを実行するには、実行したいセルにカーソルを合わせた状態で、<code>ctrl</code>+<code>Enter</code>(Macの場合は、<code>cmd</code>+<code>Enter</code>)です。もしくは、再生ボタンをクリックします。</p>
 <p>Google Colaboratoryについて気になる方は公式の<a href="https://colab.research.google.com/notebooks/intro.ipynb?hl=ja" target="_blank">説明</a>もご参照ください。</p>
 <h3 is-upgraded>ラズベリーパイ</h3>
-<p class="image-container"><img alt="img6" src="img/172aedea9436ae37.jpg"></p>
+<p class="image-container"><img alt="img6" src="img/b954fdb177c68798.jpeg"></p>
 <p>「ラズベリーパイ」は、必要最低限な機能を備えた小型PCです。その分スペックは低いですが数千円で購入できる手軽さから、子ども用のプログラミング入門キットとしてだけでなく、大学の工学部や情報学部などでの授業に取り入れられてます。また大人も楽しめる趣味として世界中で幅広い層に利用されています。</p>
 <p>今回はこのラズパイにカメラをつけて、みなさんの手元でリアルタイム物体検出を行います。</p>
+<p>小型なため電力さえあれば設置場所にも困りません。また、ぬいぐるみなどに装着することもできます。</p>
 <h3 is-upgraded>VoTT</h3>
-<p class="image-container"><img alt="img7" src="img/a9f9be300b4383af.jpg"></p>
-<p>マイクロソフトが開発している<a href="https://github.com/microsoft/VoTT" target="_blank">VoTT</a>を使って、アノテーションと呼ばれる作業を行います。詳しい説明は、後述しますが作業を補助する機能がついていて便利です。</p>
+<p class="image-container"><img alt="img7" src="img/47ffe6f8574823d3.jpeg"></p>
+<p>「VoTT」は、Microsoft社が提供する、動画・画像に対してアノテーションをおこなう無償のアノテーションツールです。</p>
+<p>アノテーションとは、対象となるデータに対して正解ラベル（タグ）や対象物の座標等関連する情報を注釈として付与することを指します。たとえば、犬の画像に対して「犬」とラベル付けたり、バウンディングボックスで犬を囲んだりします。</p>
 <h2 is-upgraded>大まかな物体検出の流れ</h2>
 <ol type="1">
 <li>学習データの作成  <ul>
@@ -61,70 +64,6 @@
 </ol>
 <p>オリジナルデータで物体検出をするために、まずは学習データを皆さんに作成してもらいます。</p>
 <p>その後、上述したGoogle Colaboratoryで学習を行い、最後にラズパイでリアルタイム画像検出を行います。</p>
-<h2 is-upgraded>事前準備</h2>
-<p>まずは、YOLOv3の講義から入りたいところですが、いくつか時間のかかる作業があるのでそちらを先に済ませます。</p>
-<h3 is-upgraded>ノートブックのコピー</h3>
-<p>まずは、今回用意したノートブックをみなさんのGoogle Driveにコピーします。</p>
-<p><a href="https://colab.research.google.com/drive/1FzwCZIIsqvSDktRDWVclO_jokT55qoA0?usp=sharing" target="_blank">こちら</a>をクリックして開いてください。</p>
-<p class="image-container"><img alt="img8" src="img/1f1b17bf6ad7de10.png"></p>
-<p>開いたら「ファイル」 &gt; 「ドライブにコピーを保存」をクリックします。これでみなさんのドライブにコピーが作成されます。</p>
-<p class="image-container"><img alt="img9" src="img/881edadd7f10bb84.png"></p>
-<p>ただし、このコピーししたノートブックは実行できる状態ではないので「ファイル」&gt;「Playgroundモードで開く」をクリックして実行できるように変更する。</p>
-<p>コピーできたら、1つ目のセル「A.Google Colaboratoryテスト用コード」を試しに実行してみましょう！実行するには、<code>ctrl</code>+<code>Enter</code>(Macの場合は、<code>cmd</code>+<code>Enter</code>)です。もしくは、再生ボタンをクリックします。</p>
-<p class="image-container"><img alt="img10" src="img/7b0321253f13556a.png"></p>
-<p>このようになれば問題ありません。</p>
-<h3 is-upgraded>Google Driveとの連携</h3>
-<p>無事にノートブックをコピーできて、実行できるようになったら作業を進めていきます。まずは、Google DriveとGoogle Colaboratoryを連携させます。</p>
-<p>「B.Google Driveとの連携」を実行しましょう。</p>
-<p class="image-container"><img alt="img11" src="img/72c64caa266fcff3.png"></p>
-<p>実行すると、このようにリンクが現れるのでクリックして開きます。</p>
-<p class="image-container"><img alt="img12" src="img/7d4a556199ce1efe.png"></p>
-<p>クリックすると、連携先のGoogleアカウントを選びます。複数のアカウントを持っている方は、ノートブックをコピーしたアカウントを選んでください。</p>
-<p class="image-container"><img alt="img13" src="img/e37e3b757731e634.png"></p>
-<p>「許可」を押します。</p>
-<p class="image-container"><img alt="img14" src="img/27085d7f1a1af348.png"></p>
-<p>赤色で隠されている部分をコピーします。赤枠箇所をクリックすると自動でコピーされます。</p>
-<p class="image-container"><img alt="img15" src="img/6df21b566d03f698.png"></p>
-<p>コピーできたら、ノートブックに戻ってこの箇所に貼り付けて、<code>Enter</code>を押します。</p>
-<p class="image-container"><img alt="img16" src="img/80cab1f052762154.png"></p>
-<p>少し時間が経って、このように表示されると連携の終了です。</p>
-<p class="image-container"><img alt="img17" src="img/def64f4360bee970.png"></p>
-<p>左側のフォルダマークをクリックすると、<code>drive</code>フォルダーが表示され、ここでdrive内のファイルを確認できます。</p>
-<h3 is-upgraded>Gitプロジェクトのダウンロード</h3>
-<p>今回使用するソースコードをダウンロードします。「C.gitプロジェクトをダウンロード」を実行しましょう。</p>
-<p>実行すると、Google Driveの<code>Colabo NoteBooks</code>というフォルダーの中に<code>yolo-tf2-test</code>というフォルダーが自動でダウンロードされます。</p>
-<p class="image-container"><img alt="img18" src="img/f8f9fb251f352e63.png"></p>
-<p>このようにDrive内の<code>Colab Notebooks</code>フォルダー内にダウンロードされます。</p>
-<h3 is-upgraded>重みのダウンロードと変換</h3>
-<p>後ほど使う、「重み」というものをダウンロードし変換します。ダウンロードには時間がかかります。 「D.重みのダウンロードと変換」を実行しましょう。</p>
-<p>ダウンロードしている間に、次のスライドを確認しましょう。</p>
-<h2 is-upgraded>YOLOv3とは</h2>
-<p>それでは、今回試す「YOLO」について簡単に解説したいと思います。</p>
-<p>難しい内容ですが、理解できなくてもプログラムを実行して物体検出を体験できますので安心してください。そういうものなのか、という程度で読み流してもらえればと思います。</p>
-<p>YOLOとは、物体検出の手法の1つです。「v3」というのは、そのままバージョン3のことを表します（※2020年5月にv4が考案されたようです。）。物体領域検出と画像認識を同時に行うことでより速く物体検出を行えるのが特徴です（その反面精度は少し落ちています。）。</p>
-<p>まずは、YOLOがどのように物体検出を行っているのか簡単なイメージで解説します。v3での改善点は最後に解説します。</p>
-<p class="image-container"><img alt="img19" src="img/3d37a0eb652f2dbf.png"></p>
-<p>https://pjreddie.com/ から引用</p>
-<p>YOLOでは、まず対象の画像をいくつかのセルに分けます。この各セルに対して、「物体領域検出（どこに物体があるのか）」と「画像認識（そのセルが何なのか）」を行います。</p>
-<p class="image-container"><img alt="img20" src="img/90fc609dc2fcf66e.png"></p>
-<p>https://pjreddie.com/ から引用</p>
-<p>上の画像が「物体領域検出」の様子です。このように、サイズの異なる複数のバウンディングボックスを用意し、それぞれに対して「物体がどれぐらい存在しているのか」を計算します。これを「信頼度スコア」と言います。 物体が存在していなければ、信頼度スコアは0になります。</p>
-<p class="image-container"><img alt="img21" src="img/47417f8171dfc598.png"></p>
-<p>https://pjreddie.com/ から引用</p>
-<p>上の画像が「画像認識」の様子です。各セルに対して画像認識を行い、そのセルがどういった画像なのかを計算します。</p>
-<p class="image-container"><img alt="img22" src="img/a55466ebcd8eabc8.png"></p>
-<p>https://pjreddie.com/ から引用</p>
-<p>上記の「物体領域検出」と「画像認識」の結果を合わせることで、最終的に「物体検出」を行います。</p>
-<p class="image-container"><img alt="img23" src="img/2f08226f23f0a101.png"></p>
-<p>https://qiita.com/mdo4nt6n/items/68dcda71e90321574a2b から引用</p>
-<p>一連の流れを画像で表すとこのようになります。</p>
-<h3 is-upgraded>YOLOv3での改善点</h3>
-<p>上記に加えて、v3ではいくつかの工夫を追加して精度や速度の改善を行いました。</p>
-<ol type="1">
-<li>1/32、1/16、1/8のサイズに分けて物体検出の結果を出力します。複数のサイズに分けることで、さまざまな画像の大きさに対応可能</li>
-<li>物体領域検出の際に使用するバウンディングボックスのサイズを調整</li>
-</ol>
-<p>以上で、YOLOについての簡単な講義は終わりです。詳細が気になる方は、Qiitaや個人のブログなどで取り上げられたりまとめられているのでそちらをご参照ください。</p>
 <h2 is-upgraded>今回のポイント</h2>
 <p>ラズパイで物体検出を簡単に試せるよう、以下の3つの工夫をしました。</p>
 <ul>
@@ -135,10 +74,49 @@
 <h3 is-upgraded>転移学習</h3>
 <p>物体検出は、AIに学習させる時間や必要なデータ数が大量になります。そのため、今回は「転移学習」と呼ばれるものを行い「時間」「データ数」の必要量を減らします。</p>
 <p>簡単に言うと、ある領域で学習させたモデルを別の領域に適応させる技術です。事前に学習されているため、学習に時間がかかりません。たとえば、「犬の種類の画像認識を行うモデル」を「猫の種類の画像認識」に応用できます。</p>
-<p>「4.重みのダウンロードと変換」で今回使用する「学習済みの重み」をダウンロードしました。</p>
 <h3 is-upgraded>YOLOv3-tinyの採用</h3>
 <p>また、YOLOv3-tinyと呼ばれる「正確さよりもリアルタイム性や軽量さを重視したモデル」を使用します。そのため、重みもtiny版をダウンロードしています。</p>
-<p>もし通常のYOLOの重みも試してみたい方は、</p>
+<h3 is-upgraded>学習データの水増し</h3>
+<p>画像認識でもよく採用されている「学習データの水増し」を使って、必要な画像枚数を少なくします。また、この後に作成するアノテーションデータ自体の水増しも行うため、時間短縮できます。</p>
+<p>「水増し」という言葉の印象はあまりよくありませんが、単純に学習データとなる画像をプログラムを使って複製するだけです。つまり、元の画像枚数が20枚しか</p>
+<p>自分が試したところ、1つのクラスに対して20種類ぐらいの画像がを用いると水増しが上手く効果してくれました。</p>
+<h2 is-upgraded>事前準備</h2>
+<p>まずは、YOLOv3の講義から入りたいところですが、いくつか時間のかかる作業があるのでそちらを先に済ませます。</p>
+<h3 is-upgraded>ノートブックのコピー</h3>
+<p>まずは、今回用意したノートブックをみなさんのGoogle Driveにコピーします。</p>
+<p><a href="https://colab.research.google.com/drive/1FzwCZIIsqvSDktRDWVclO_jokT55qoA0?usp=sharing" target="_blank">こちら</a>をクリックして開いてください。</p>
+<p class="image-container"><img alt="img8" src="img/685b651aa180d4d2.jpeg"></p>
+<p>開いたら「ファイル」 &gt; 「ドライブにコピーを保存」をクリックします。これでみなさんのドライブにコピーが作成されます。</p>
+<p class="image-container"><img alt="img9" src="img/d92bee017053c23b.jpeg"></p>
+<p>ただし、このコピーししたノートブックは実行できる状態ではないので「ファイル」&gt;「Playgroundモードで開く」をクリックして実行できるように変更する。</p>
+<p>コピーできたら、1つ目のセル「A.Google Colaboratoryテスト用コード」を試しに実行してみましょう！実行するには、<code>ctrl</code>+<code>Enter</code>(Macの場合は、<code>cmd</code>+<code>Enter</code>)です。もしくは、再生ボタンをクリックします。</p>
+<p class="image-container"><img alt="img10" src="img/7b0321253f13556a.jpeg"></p>
+<p>このようになれば問題ありません。</p>
+<h3 is-upgraded>Google Driveとの連携</h3>
+<p>無事にノートブックをコピーできて、実行できるようになったら作業を進めていきます。まずは、Google DriveとGoogle Colaboratoryを連携させます。</p>
+<p>「B.Google Driveとの連携」を実行しましょう。</p>
+<p class="image-container"><img alt="img11" src="img/72c64caa266fcff3.jpeg"></p>
+<p>実行すると、このようにリンクが現れるのでクリックして開きます。</p>
+<p class="image-container"><img alt="img12" src="img/679685bc8c2703a6.jpeg"></p>
+<p>クリックすると、連携先のGoogleアカウントを選びます。複数のアカウントを持っている方は、ノートブックをコピーしたアカウントを選んでください。</p>
+<p class="image-container"><img alt="img13" src="img/2977ba487630b6f.jpeg"></p>
+<p>「許可」を押します。</p>
+<p class="image-container"><img alt="img14" src="img/e2959c19775421ce.jpeg"></p>
+<p>赤色で隠されている部分をコピーします。赤枠箇所をクリックすると自動でコピーされます。</p>
+<p class="image-container"><img alt="img15" src="img/47d09c439a784bba.jpeg"></p>
+<p>コピーできたら、ノートブックに戻ってこの箇所に貼り付けて、<code>Enter</code>を押します。</p>
+<p class="image-container"><img alt="img16" src="img/2d24f23e73fdb135.jpeg"></p>
+<p>少し時間が経って、このように表示されると連携の終了です。</p>
+<p class="image-container"><img alt="img17" src="img/40fcb9b7bea35964.jpeg"></p>
+<p>左側のフォルダマークをクリックすると、<code>drive</code>フォルダーが表示され、ここでdrive内のファイルを確認できます。</p>
+<h3 is-upgraded>Gitプロジェクトのダウンロード</h3>
+<p>今回使用するソースコードをダウンロードします。「C.gitプロジェクトをダウンロード」を実行しましょう。</p>
+<p>実行すると、Google Driveの<code>Colabo NoteBooks</code>というフォルダーの中に<code>yolo-tf2-test</code>というフォルダーが自動でダウンロードされます。</p>
+<p class="image-container"><img alt="img18" src="img/472d3060f74c0e91.jpeg"></p>
+<p>このようにDrive内の<code>Colab Notebooks</code>フォルダー内にダウンロードされます。</p>
+<h3 is-upgraded>重みのダウンロードと変換</h3>
+<p>転移学習で使用する「重み」をダウンロードし変換します。ダウンロードには時間がかかります。 「D.重みのダウンロードと変換」を実行しましょう。</p>
+<p>実行するとtinyモデルの重みをダウンロードします。もし通常のYOLOの重みも試してみたい方は、</p>
 <pre><code>!wget https://pjreddie.com/media/files/yolov3-tiny.weights -O data/yolo_weight/yolov3-tiny.weights
 !python convert.py --weights ./data/yolo_weight/yolov3-tiny.weights --output ./data/weight/yolov3-tiny.tf --tiny
 
@@ -154,16 +132,47 @@
 !wget https://pjreddie.com/media/files/yolov3.weights -O data/yolo_weight/yolov3.weights
 !python convert.py --weights ./data/yolo_weight/yolov3.weights --output ./data/weight/yolov3.tf
 </code></pre>
-<p>つまり、これを実行してもらえれば大丈夫です。</p>
-<h3 is-upgraded>学習データの水増し</h3>
-<p>画像認識でもよく採用されている「学習データの水増し」を使って、必要な画像枚数を少なくします。また、この後に作成するアノテーションデータ自体の水増しも行うため、時間短縮できます。</p>
-<p>「水増し」という言葉の印象はあまりよくありませんが、単純に学習データとなる画像をプログラムを使って複製するだけです。つまり、元の画像枚数が20枚しか</p>
-<p>自分が試したところ、1つのクラスに対して20種類ぐらいの画像がを用いると水増しが上手く効果してくれました。</p>
-<h2 is-upgraded>テスト</h2>
-<p>ノートブックに戻って、重みのダウンロードが完了していたら「E.テスト」を実行しましょう。</p>
-<p class="image-container"><img alt="img24" src="img/76fd45ee8aac4c41.jpg"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="YOLOv3とは" duration="10">
+        <p>それでは、今回試す「YOLO」について簡単に解説したいと思います。</p>
+<p>難しい内容ですが、理解できなくてもプログラムを実行して物体検出を体験できますので安心してください。そういうものなのか、という程度で読み流してもらえればと思います。</p>
+<p>YOLOとは、物体検出の手法の1つです。「v3」というのは、そのままバージョン3のことを表します（※2020年5月にv4が考案されたようです。）。物体領域検出と画像認識を同時に行うことでより速く物体検出を行えるのが特徴です（その反面精度は少し落ちています。）。</p>
+<p>まずは、YOLOがどのように物体検出を行っているのか簡単なイメージで解説します。v3での改善点は最後に解説します。</p>
+<p class="image-container"><img alt="img19" src="img/3d37a0eb652f2dbf.jpeg"></p>
+<p>https://pjreddie.com/ から引用</p>
+<p>YOLOでは、まず対象の画像をいくつかのセルに分けます。この各セルに対して、「物体領域検出（どこに物体があるのか）」と「画像認識（そのセルが何なのか）」を行います。</p>
+<p class="image-container"><img alt="img20" src="img/90fc609dc2fcf66e.jpeg"></p>
+<p>https://pjreddie.com/ から引用</p>
+<p>上の画像が「物体領域検出」の様子です。このように、サイズの異なる複数のバウンディングボックスを用意し、それぞれに対して「物体がどれぐらい存在しているのか」を計算します。これを「信頼度スコア」と言います。 物体が存在していなければ、信頼度スコアは0になります。</p>
+<p class="image-container"><img alt="img21" src="img/47417f8171dfc598.jpeg"></p>
+<p>https://pjreddie.com/ から引用</p>
+<p>上の画像が「画像認識」の様子です。各セルに対して画像認識を行い、そのセルがどういった画像なのかを計算します。</p>
+<p class="image-container"><img alt="img22" src="img/a55466ebcd8eabc8.jpeg"></p>
+<p>https://pjreddie.com/ から引用</p>
+<p>上記の「物体領域検出」と「画像認識」の結果を合わせることで、最終的に「物体検出」を行います。</p>
+<p class="image-container"><img alt="img23" src="img/f672860747b2cd5e.jpeg"></p>
+<p>https://qiita.com/mdo4nt6n/items/68dcda71e90321574a2b から引用</p>
+<p>一連の流れを画像で表すとこのようになります。</p>
+<h3 is-upgraded>YOLOv3での改善点</h3>
+<p>上記に加えて、v3ではいくつかの工夫を追加して精度や速度の改善を行いました。</p>
+<ol type="1">
+<li>1/32、1/16、1/8のサイズに分けて物体検出の結果を出力します。複数のサイズに分けることで、さまざまな画像の大きさに対応可能</li>
+<li>物体領域検出の際に使用するバウンディングボックスのサイズを調整</li>
+</ol>
+<p>以上で、YOLOについての簡単な講義は終わりです。詳細が気になる方は、Qiitaや個人のブログなどで取り上げられたりまとめられているのでそちらをご参照ください。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="学習データの作成" duration="10">
+        <h2 is-upgraded>テスト</h2>
+<p>それでは、早速学習データを作成したいと思いますが、まずは無事にダウンロードできているかテストを行います。 ノートブックに戻って、重みのダウンロードが完了していたら「E.テスト」を実行しましょう。</p>
+<p class="image-container"><img alt="img24" src="img/9fc84866a84521a.jpg"></p>
 <p>このように画像が出てきたらテストには問題ありません。検出が上手くいっていなくても大丈夫です。おそらくtinyのため精度が低いのでしょう。</p>
-<p class="image-container"><img alt="img25" src="img/d53597a3fe7959df.jpg"></p>
+<p class="image-container"><img alt="img25" src="img/b9e35e3f269d13b9.jpg"></p>
 <p>ちなみに、tinyではなく通常の重みを使用すると高精度に検出してくれます。</p>
 <pre><code># tiny
 # !python detect.py --weights ./data/weight/yolov3-tiny.tf --tiny --image ./data/meme.jpg
@@ -176,7 +185,7 @@ display_jpeg(Image(&#39;output.jpg&#39;))
 </code></pre>
 <p>先ほどtinyではない重みもダウンロードした方はこちらを実行すればテストできます。</p>
 <p>また、他の画像を使用することもできます。</p>
-<p class="image-container"><img alt="img26" src="img/fdb93cccb1fd01ad.png"></p>
+<p class="image-container"><img alt="img26" src="img/88404f68320c64f0.jpeg"></p>
 <p>左のフォルダマークをクリックして、<code>drive</code> &gt; <code>My Drive</code> &gt; <code>Colab Notebooks</code> &gt; <code>yolo-tf2-test</code> &gt; <code>data</code>の順にクリックします。</p>
 <p>そして、検出させたい画像を最後の<code>data</code>フォルダーの中にアップロードします。そのままドラッグアンドドロップするか赤枠のアップロードから画像を選ぶだけです。</p>
 <pre><code># tiny
@@ -199,21 +208,16 @@ from IPython.display import Image,display_jpeg
 display_jpeg(Image(&#39;output.jpg&#39;))
 </code></pre>
 <p>たとえば、<code>test.jpg</code>を対象に実行する場合、上記のように変更します。</p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="学習データの作成" duration="10">
-        <p>それでは、学習データを作成してきます。</p>
+<p>それでは、学習データを作成してきます。</p>
 <p>物体検出の場合、学習データは「画像」と「バウンディングボックス（正確にはバウンディングボックスの座標位置）」となります。</p>
 <p>画像は、みなさんが用意したものを使用します。その画像に「VoTT」というツールを使って検出したい箇所にバウディングボックスをつけていきます（この作業をアノテーションと呼びます）。</p>
 <h2 is-upgraded>オリジナルデータの解凍</h2>
 <p>まずは、用意した画像を<code>original_images</code>という名前のフォルダーにまとめてください。まとめたら<code>original_images.zip</code>とzip形式に圧縮してください。</p>
 <p>用意する画像のサイズや拡張子はなんでもOKです（後ほど自動でリサイズします。）。拡張子は揃えておいた方がほんの少しだけ楽です。 スマートフォンで撮った写真を使っても大丈夫です。</p>
-<p class="image-container"><img alt="img26-1" src="img/28e894533071359.png"></p>
+<p class="image-container"><img alt="img26-1" src="img/e2cb5f4f66b0abc8.jpeg"></p>
 <p>画像はどういったものでも問題ありませんが、始めはシンプルに検出したい物だけを映すことをオススメします。まずは、シンプルなデータで学習して物体検出を体感してみましょう。</p>
 <p>圧縮したらGoogle Driveの<code>data</code>フォルダー内にアップロードします。アップロードしたら「F.オリジナルデータの解凍」を実行します。アップロードしたzipフォルダーを解凍します。</p>
-<p class="image-container"><img alt="img26-2" src="img/11e6b736a5291311.png"></p>
+<p class="image-container"><img alt="img26-2" src="img/3d8d11b3d4849d20.jpeg"></p>
 <p>画像をさらにフォルダー毎に分ける必要はありません。上の画像のように、画像データだけを<code>original_images</code>フォルダーに入れてください。</p>
 <h2 is-upgraded>データの整形</h2>
 <p>解凍が終わったら「G.データの整形」を行い、416*416サイズに変更します。サイズ変更した画像は<code>resized_images</code>に保存されます。</p>
@@ -244,18 +248,13 @@ img_name = &#39;img&#39; # 生成された画像のファイル名
 <p>ここも調整することで精度が変化するので各自色々と試してみましょう。</p>
 <h2 is-upgraded>変形した画像を圧縮してダウンロード</h2>
 <p>データを水増しができたら最後に「I.変形した画像を圧縮してダウンロード」を実行します。実行すると自動でダウンロードされますが、たまに、ポップアップが出現しダウンロードの許可ボタンを押す必要がありますので注意してください。</p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="学習データの作成" duration="10">
-        <p>これで画像を用意できたので、次はアノテーションを行っています。</p>
+<p>これで画像を用意できたので、次はアノテーションを行っています。</p>
 <p>まずは、VoTTを<a href="https://github.com/Microsoft/VoTT/releases" target="_blank">こちら</a>からダウンロードしてください。</p>
-<p class="image-container"><img alt="img27" src="img/1b121f40463715ef.png"></p>
+<p class="image-container"><img alt="img27" src="img/615f7c538c943281.jpeg"></p>
 <p>自分のOSに合わせて<code>.dmg</code>,<code>.snap</code>,<code>.exe</code>ファイルのどれかをダウンロードしてください。ダウンロードしたらファイルを実行して、VoTTを立ち上げましょう。</p>
-<p class="image-container"><img alt="img28" src="img/e9d2311b7f56970.png"></p>
+<p class="image-container"><img alt="img28" src="img/3b9ac9264bf60edd.jpeg"></p>
 <p>立ち上がったら<code>New Project</code>を選びます。</p>
-<p class="image-container"><img alt="img29" src="img/86081e8fe4dddd9.png"></p>
+<p class="image-container"><img alt="img29" src="img/5a78357d45846bf1.jpeg"></p>
 <p>プロジェクトの名前などを設定します。</p>
 <ul>
 <li>Display Name: プロジェクトの名前を記入</li>
@@ -268,17 +267,17 @@ img_name = &#39;img&#39; # 生成された画像のファイル名
 </ul>
 <p>Tagsに検出したい画像の名前を追加してください。</p>
 <p>Source / Target Connectionは、まずは<code>Add Connection</code>から新しく作成する必要があります。</p>
-<p class="image-container"><img alt="img30" src="img/bbc07f82f9dede8f.png"></p>
+<p class="image-container"><img alt="img30" src="img/bbc07f82f9dede8f.jpeg"></p>
 <ul>
 <li>Display Name: Connectionimの名前</li>
 <li>Provider: Local File Systemを選ぶ</li>
 <li>Local File System: ローカル内の任意のディレクトリを選ぶ</li>
 </ul>
 <p>出力先のフォルダーは、別途<code>out</code>のような名前のフォルダーを追加するとわかりやすいです。</p>
-<p class="image-container"><img alt="img31" src="img/f10698dad50bd431.png"></p>
+<p class="image-container"><img alt="img31" src="img/f10698dad50bd431.jpeg"></p>
 <p>このようにダウンロードしてきた<code>changed_images</code>をSource　Connectionに設定し、その中に<code>out</code>を作ってTarget Connectionにするのがお勧めです。</p>
 <p>それぞれ設定できたら<code>Save Connection</code>をクリックします。これでアノテーションに入れますが、もう少し設定を変更します。</p>
-<p class="image-container"><img alt="img32" src="img/4d6bf12f49c50f97.png"></p>
+<p class="image-container"><img alt="img32" src="img/4d6bf12f49c50f97.jpeg"></p>
 <p>まずは、左の上から4つ目のアイコンをクリックして、出力形式を上記画像のように変更します。</p>
 <ul>
 <li>Provider: Pascal VOC</li>
@@ -286,7 +285,7 @@ img_name = &#39;img&#39; # 生成された画像のファイル名
 <li>Test / Train Split: 100</li>
 </ul>
 <p>変更したら、<code>Save Export Settings</code>をクリックします。</p>
-<p class="image-container"><img alt="img33" src="img/f4d00b33fd0c9911.png"></p>
+<p class="image-container"><img alt="img33" src="img/f4d00b33fd0c9911.jpeg"></p>
 <p>次に、左の上から5番目のアイコンをクリックして、上記のように設定します。VoTTの機能でアノテーションを補助してくれます。ここでは、自動でバウンディングボックスをつけるようにしています。不要なバウンディングボックスが多ければ、<code>Auto Detect</code>のチェックマークを外してください。</p>
 <p>変更したら、<code>Save Project</code>をクリックします。</p>
 <p>これで設定はお終いです。左の上から2番目をクリックしてアノテーション作業に入ります。</p>
@@ -318,13 +317,13 @@ img_name = &#39;img&#39; # 生成された画像のファイル名
         <p>次に学習を実行します。画像の量に応じて、「画像の解凍」「tfrecordへの変換」「学習」それぞれに時間がかかります。</p>
 <h2 is-upgraded>画像の解凍</h2>
 <p>アノテーション作業が終わったら、VoTTから必要なデータを出力します。出力ボタンを押すだけで、Target Connectionで設定したフォルダーにデータが出力されます。</p>
-<p class="image-container"><img alt="img35" src="img/5b1f920030068f40.png"></p>
+<p class="image-container"><img alt="img35" src="img/5b1f920030068f40.jpeg"></p>
 <p>右上にこのようなポップが表示されたら無事出力成功です。</p>
-<p class="image-container"><img alt="img36" src="img/d2731d25caca9ddd.png"></p>
+<p class="image-container"><img alt="img36" src="img/d2731d25caca9ddd.jpeg"></p>
 <p>このようなポップが出てきた場合は、失敗です。原因不明でたまに失敗します。 プロジェクトを保存して、一度VoTTを閉じて再度起動して出力ボタンを再度押してください。また、失敗したらこれを繰り返してください。</p>
-<p class="image-container"><img alt="img37" src="img/88b676a3a68cc26a.png"></p>
+<p class="image-container"><img alt="img37" src="img/88b676a3a68cc26a.jpeg"></p>
 <p>Target Connectionには、このようにjsonデータが大量に生成されています。今回必要なのは<code>~~~~~ -PascalVOC-export</code>というフォルダーです（変更日など時間でソートをすると見つけやすいです。）。</p>
-<p class="image-container"><img alt="img38" src="img/be17770cebcf72fd.png"></p>
+<p class="image-container"><img alt="img38" src="img/be17770cebcf72fd.jpeg"></p>
 <p>このフォルダーを<code>train_images</code>に名前を変えて、zip形式に圧縮します。圧縮したら、Google Driveにアップロードします。アップロード先は、同様に<code>data</code>フォルダー内です。</p>
 <p>アップロードできたら「J.画像の解凍」を実行してください。</p>
 <h2 is-upgraded>tfrecordの作成</h2>
@@ -342,7 +341,7 @@ augment_size = 1 # 画像の水増し量
 </code></pre>
 <p>このような感じで変更してください。 水増し量は、各画像に対して何枚増やすかになります。そのため、数枚程度に留めておいた方が良いと思います。</p>
 <p>設定したら「K.tfrecordの作成」を実行してください。</p>
-<p class="image-container"><img alt="img39" src="img/7cd5768231676e8f.png"></p>
+<p class="image-container"><img alt="img39" src="img/7cd5768231676e8f.jpeg"></p>
 <p>実行すると<code>data</code>フォルダに<code>train</code>,<code>val</code>,<code>test</code>の3つのtfrecordが生成されます。ファイル名は、<code>tf_file_name</code>で指定した文字列 + <code>_train</code>,<code>_val</code>,<code>_test</code>となります。</p>
 <p>それぞれ訓練用、検証用、テスト用です。</p>
 <h2 is-upgraded>tfrecordの表示</h2>
@@ -380,7 +379,7 @@ tiny = True
     
       <google-codelab-step label="物体検出１" duration="10">
         <p>学習している間にラズパイでの物体検出を体感してもらいます。こちらで用意したジャンケンの手を検出する重みを使用します。</p>
-<p>まずは、ラズパイを起動してターミナルを起動します。 <img alt="img40" src="img/4a9d68c7d025faae.png"></p>
+<p>まずは、ラズパイを起動してターミナルを起動します。 <img alt="img40" src="img/4a9d68c7d025faae.jpeg"></p>
 <p>ラズパイのホーム画面の左上の赤枠をクリックするか<code>Ctrl</code>+<code>Alt</code>+<code>t</code>のショートカットキーでも起動できます。</p>
 <p>起動したら、<code>cd Desktop</code>でデスクトップに移動します。</p>
 <pre><code>git clone https://jw-fujibayashi:moyashi314%40tmge@github.com/jw-fujibayashi/yolo-tf2-test.git
