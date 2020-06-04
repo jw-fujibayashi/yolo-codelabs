@@ -55,8 +55,8 @@
 <h2 is-upgraded>大まかな物体検出の流れ</h2>
 <ol type="1">
 <li>学習データの作成  <ul>
-<li>検出したいものの画像の用意</li>
-<li>画像に対してアノテーション作業</li>
+<li>検出したいモノの画像用意</li>
+<li>アノテーション作業</li>
 </ul>
 </li>
 <li>学習</li>
@@ -75,20 +75,21 @@
 <p>物体検出は、AIに学習させる時間や必要なデータ数が大量になります。そのため、今回は「転移学習」と呼ばれるものを行い「時間」「データ数」の必要量を減らします。</p>
 <p>簡単に言うと、ある領域で学習させたモデルを別の領域に適応させる技術です。事前に学習されているため、学習に時間がかかりません。たとえば、「犬の種類の画像認識を行うモデル」を「猫の種類の画像認識」に応用できます。</p>
 <h3 is-upgraded>YOLOv3-tinyの採用</h3>
-<p>また、YOLOv3-tinyと呼ばれる「正確さよりもリアルタイム性や軽量さを重視したモデル」を使用します。そのため、重みもtiny版をダウンロードしています。</p>
+<p>今回は、YOLOv3-tinyと呼ばれる「正確さよりもリアルタイム性や軽量さを重視したモデル」を使用します。</p>
+<p>精度は落ちますが、ラズパイでも動作できる程度に軽いモデルです。</p>
 <h3 is-upgraded>学習データの水増し</h3>
-<p>画像認識でもよく採用されている「学習データの水増し」を使って、必要な画像枚数を少なくします。また、この後に作成するアノテーションデータ自体の水増しも行うため、時間短縮できます。</p>
-<p>「水増し」という言葉の印象はあまりよくありませんが、単純に学習データとなる画像をプログラムを使って複製するだけです。つまり、元の画像枚数が20枚しか</p>
-<p>自分が試したところ、1つのクラスに対して20種類ぐらいの画像がを用いると水増しが上手く効果してくれました。</p>
+<p>画像認識でもよく採用されている「学習データの水増し」を使って、必要な画像枚数を少なくします。また、この後に作成するアノテーションデータ自体の水増しも行右ことでアノテーション作業量を減らします。</p>
+<p>「水増し」という言葉の印象はあまりよくありませんが、単純に学習データとなる画像をプログラムを使って複製するだけです。たとえば、元の画像枚数が20枚しかなくても100枚に増やして学習させることができます。</p>
+<p>自分が試したところ、1つのクラスに対して20種類ぐらいの画像がを用意すれば上手く検出してくれました。（最終的には、1つのクラスに対して300 ~ 400枚使用していることにあります）</p>
 <h2 is-upgraded>事前準備</h2>
-<p>まずは、YOLOv3の講義から入りたいところですが、いくつか時間のかかる作業があるのでそちらを先に済ませます。</p>
+<p>いくつか時間のかかる作業があるのでそちらを先に済ませます。</p>
 <h3 is-upgraded>ノートブックのコピー</h3>
 <p>まずは、今回用意したノートブックをみなさんのGoogle Driveにコピーします。</p>
 <p><a href="https://colab.research.google.com/drive/1FzwCZIIsqvSDktRDWVclO_jokT55qoA0?usp=sharing" target="_blank">こちら</a>をクリックして開いてください。</p>
 <p class="image-container"><img alt="img8" src="img/685b651aa180d4d2.jpeg"></p>
 <p>開いたら「ファイル」 &gt; 「ドライブにコピーを保存」をクリックします。これでみなさんのドライブにコピーが作成されます。</p>
 <p class="image-container"><img alt="img9" src="img/d92bee017053c23b.jpeg"></p>
-<p>ただし、このコピーししたノートブックは実行できる状態ではないので「ファイル」&gt;「Playgroundモードで開く」をクリックして実行できるように変更する。</p>
+<p>ただし、このコピーししたノートブックは実行できる状態ではないので「ファイル」&gt;「Playgroundモードで開く」をクリックして実行できるようします。</p>
 <p>コピーできたら、1つ目のセル「A.Google Colaboratoryテスト用コード」を試しに実行してみましょう！実行するには、<code>ctrl</code>+<code>Enter</code>(Macの場合は、<code>cmd</code>+<code>Enter</code>)です。もしくは、再生ボタンをクリックします。</p>
 <p class="image-container"><img alt="img10" src="img/7b0321253f13556a.jpeg"></p>
 <p>このようになれば問題ありません。</p>
@@ -132,6 +133,7 @@
 !wget https://pjreddie.com/media/files/yolov3.weights -O data/yolo_weight/yolov3.weights
 !python convert.py --weights ./data/yolo_weight/yolov3.weights --output ./data/weight/yolov3.tf
 </code></pre>
+<p>これで事前準備はお終いです。ダウンロードには時間がかかるので、終わるのを待つ必要はありません。次のスライドに進みましょう！</p>
 
 
       </google-codelab-step>
@@ -139,22 +141,22 @@
       <google-codelab-step label="YOLOv3とは" duration="10">
         <p>それでは、今回試す「YOLO」について簡単に解説したいと思います。</p>
 <p>難しい内容ですが、理解できなくてもプログラムを実行して物体検出を体験できますので安心してください。そういうものなのか、という程度で読み流してもらえればと思います。</p>
-<p>YOLOとは、物体検出の手法の1つです。「v3」というのは、そのままバージョン3のことを表します（※2020年5月にv4が考案されたようです。）。物体領域検出と画像認識を同時に行うことでより速く物体検出を行えるのが特徴です（その反面精度は少し落ちています。）。</p>
+<p>YOLOとは、物体検出の手法の1つです。「v3」というのは、そのままバージョン3のことを表します。（※2020年5月にv4が考案されたようです）物体領域検出と画像認識を同時に行うことでより速く物体検出を行えるのが特徴です。その反面、精度は他のアルゴリズムと比べると少し落ちています。</p>
 <p>まずは、YOLOがどのように物体検出を行っているのか簡単なイメージで解説します。v3での改善点は最後に解説します。</p>
 <p class="image-container"><img alt="img19" src="img/3d37a0eb652f2dbf.jpeg"></p>
-<p>https://pjreddie.com/ から引用</p>
+<p>（https://pjreddie.com/ から引用）</p>
 <p>YOLOでは、まず対象の画像をいくつかのセルに分けます。この各セルに対して、「物体領域検出（どこに物体があるのか）」と「画像認識（そのセルが何なのか）」を行います。</p>
 <p class="image-container"><img alt="img20" src="img/90fc609dc2fcf66e.jpeg"></p>
-<p>https://pjreddie.com/ から引用</p>
+<p>（https://pjreddie.com/ から引用）</p>
 <p>上の画像が「物体領域検出」の様子です。このように、サイズの異なる複数のバウンディングボックスを用意し、それぞれに対して「物体がどれぐらい存在しているのか」を計算します。これを「信頼度スコア」と言います。 物体が存在していなければ、信頼度スコアは0になります。</p>
 <p class="image-container"><img alt="img21" src="img/47417f8171dfc598.jpeg"></p>
-<p>https://pjreddie.com/ から引用</p>
+<p>（https://pjreddie.com/ から引用）</p>
 <p>上の画像が「画像認識」の様子です。各セルに対して画像認識を行い、そのセルがどういった画像なのかを計算します。</p>
 <p class="image-container"><img alt="img22" src="img/a55466ebcd8eabc8.jpeg"></p>
-<p>https://pjreddie.com/ から引用</p>
+<p>（https://pjreddie.com/ から引用）</p>
 <p>上記の「物体領域検出」と「画像認識」の結果を合わせることで、最終的に「物体検出」を行います。</p>
 <p class="image-container"><img alt="img23" src="img/f672860747b2cd5e.jpeg"></p>
-<p>https://qiita.com/mdo4nt6n/items/68dcda71e90321574a2b から引用</p>
+<p>（https://qiita.com/mdo4nt6n/items/68dcda71e90321574a2b から引用）</p>
 <p>一連の流れを画像で表すとこのようになります。</p>
 <h3 is-upgraded>YOLOv3での改善点</h3>
 <p>上記に加えて、v3ではいくつかの工夫を追加して精度や速度の改善を行いました。</p>
@@ -226,6 +228,7 @@ display_jpeg(Image(&#39;output.jpg&#39;))
 </code></pre>
 <p>8行目の<code>jpg</code>の箇所を皆さんのデータの拡張子に揃えてください。</p>
 <p>トリミングではなく、1:1となるようにリサイズし足りない箇所は白色で埋めるようにしています。</p>
+<p>複数の拡張子が混在している場合は、お手数ですがすべての拡張子に対してこの作業をお願いします。</p>
 <h2 is-upgraded>画像の水増し</h2>
 <p>次に画像の水増しを行います。</p>
 <pre><code>############
@@ -235,7 +238,7 @@ img_name = &#39;img&#39; # 生成された画像のファイル名
 </code></pre>
 <p>この箇所の数値を変更することで、画像1枚に対して水増しする量を調整できます。上記の例の場合、1枚に対しておよそ60枚複製されることになります。</p>
 <p>枚数を決定したら「H.画像の水増し」を実行しましょう。最初は1クラスに対して合計100枚ぐらいになるように設定することをオススメします。一度簡単に試してみて上手く検出できていたら画像を増やしていく方が効率的です。</p>
-<p>また、新たに画像を追加する場合は、<code>img_name = &#39;img&#39;</code>の<code>img</code>部分を変更して、水増しされた画像のファイル名が被らないようにしましょう（言ってることがわかりにくい方は、実際に水増しされたあとの画像ファイル名を確認してみるとわかりやすいです。）。</p>
+<p>また、新たに画像を追加する場合は、<code>img_name = &#39;img&#39;</code>の<code>img</code>部分を変更して、水増しされた画像のファイル名が被らないようにしましょう。（言ってることがわかりにくい方は、実際に水増しされたあとの画像ファイル名を確認してみるとわかりやすいです）</p>
 <pre><code>datagen = ImageDataGenerator(
     channel_shift_range=30,
     rotation_range=10,
@@ -244,7 +247,7 @@ img_name = &#39;img&#39; # 生成された画像のファイル名
     height_shift_range=0.1,
     )
 </code></pre>
-<p>画像の水増しは、ただ複製するだけではなく、少し加工した上で複製を行います。パラメーターについては、すべてが解説されているわけではありませんが<a href="https://qiita.com/takurooo/items/c06365dd43914c253240" target="_blank">こちら</a>で詳しく解説されています。</p>
+<p>画像の水増しは、ただ複製するだけではなく少し加工した上で複製を行います。どのように加工するか指定するパラメーターについては、<a href="https://qiita.com/takurooo/items/c06365dd43914c253240" target="_blank">こちら</a>で詳しく解説されていますのでご参照ください。</p>
 <p>ここも調整することで精度が変化するので各自色々と試してみましょう。</p>
 <h2 is-upgraded>変形した画像を圧縮してダウンロード</h2>
 <p>データを水増しができたら最後に「I.変形した画像を圧縮してダウンロード」を実行します。実行すると自動でダウンロードされますが、たまに、ポップアップが出現しダウンロードの許可ボタンを押す必要がありますので注意してください。</p>
@@ -381,15 +384,15 @@ tiny = True
         <p>学習している間にラズパイでの物体検出を体感してもらいます。こちらで用意したジャンケンの手を検出する重みを使用します。</p>
 <p>まずは、ラズパイを起動してターミナルを起動します。 <img alt="img40" src="img/4a9d68c7d025faae.jpeg"></p>
 <p>ラズパイのホーム画面の左上の赤枠をクリックするか<code>Ctrl</code>+<code>Alt</code>+<code>t</code>のショートカットキーでも起動できます。</p>
-<p>起動したら、<code>cd Desktop</code>でデスクトップに移動します。</p>
-<pre><code>git clone https://jw-fujibayashi:moyashi314%40tmge@github.com/jw-fujibayashi/yolo-tf2-test.git
-</code></pre>
-<p>同じようにGitのプロジェクトをクローンします。クローンしたら<code>cd yolo-tf2-test</code>を実行します。</p>
-<p>クローンしたら、以下のコマンドを順に入力します。モジュールなどをダウンロードします。</p>
-<p><code>virtualenv .env</code>, <code>source .env/bin/activate</code>,<code>pip install -r requirements.txt</code></p>
+<p>起動したら必要なものをインストールします。パスワードの入力を求められたら、入力してください。</p>
+<p><code>sudo apt updatesudo apt upgrade -ysudo apt install python3-dev python3-pip libatlas-base-dev</code></p>
+<p>すべて終わったら、<code>cd Desktop</code>でデスクトップに移動し、Gitプロジェクトwダウンロードします。</p>
+<p><code>git clone https://jw-fujibayashi:moyashi314%40tmge@github.com/jw-fujibayashi/yolo-tf2-test.git</code></p>
+<p>クローンしたら<code>cd yolo-tf2-test</code>を実行し、また少し設定を行います。</p>
+<p><code>wget &#34;https://raw.githubusercontent.com/PINTO0309/Tensorflow-bin/master/tensorflow-2.2.0-cp37-cp37m-linux_armv7l_download.sh&#34;chmod 764 ./tensorflow-2.2.0-cp37-cp37m-linux_armv7l_download.sh./tensorflow-2.2.0-cp37-cp37m-linux_armv7l_download.shsudo pip3 install tensorflow-1.15.0-cp37-cp37m-linux_armv7l.whlsudo pip3 install -r requirements.txt</code></p>
 <p>無事ダウンロードできたら、<a href="https://drive.google.com/open?id=1FvNGTYcpmRwvAkKUUwK4YzLDGmlfUPPs" target="_blank">こちら</a>の重みをダウンロードしてください。3ファイルありますが、3ファイルともダウンロードしてください。</p>
 <p>ダウンロードできたら、ラズパイの<code>yolov2-tf-test</code>の<code>data</code>の<code>weight</code>フォルダーに入れます。</p>
-<pre><code>python detect_video.py --video 0 --tiny --weights data/weight/hands.tf
+<pre><code>python3 detect_video.py --video 0 --tiny --weights data/weight/hands.tf
 </code></pre>
 <p>最後に上記コマンドを実行すると、リアルタイム物体検出のプログラムが実行します。ラズパイにカメラをつけた状態で実行する必要があるので注意してください。</p>
 <p>プログラムを終了する際には、<code>q</code>キーを押してください。</p>
@@ -420,7 +423,7 @@ tfrecord_name = &#39;&#39;
     
       <google-codelab-step label="学習のコツ" duration="0">
         <p>自分が試してみて上手くいったと感じたコツを以下にまとめます。論理的な部分もない場合もありますので、軽く参考にしてもらえればと思います。</p>
-<p>また、一般的に高精度の物体検出を行うには、1クラスあたり1000枚の画像が必要されると言われています（単純に水増しして1000枚に達すれば良いわけではありません）。</p>
+<p>また、一般的に高精度の物体検出を行うには、1クラスあたり1000枚の画像が必要されると言われています。（単純に水増しして1000枚に達すれば良いわけではありません）</p>
 <p>それと比べると今回は圧倒的にデータ量が足りていなく、かつtinyで学習しているので精度に限界があることは念頭に置いておいてください。</p>
 <h2 is-upgraded>学習データは量よりも種類</h2>
 <p>似たような画像をたくさん用意するよりも、バリエーションを増やした方が精度は向上します。たとえば、背景を変えるだけでも大丈夫です。また、遠くから撮った画像なども用意するとより精度は向上します。</p>
