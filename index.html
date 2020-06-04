@@ -385,11 +385,17 @@ tiny = True
 <p>まずは、ラズパイを起動してターミナルを起動します。 <img alt="img40" src="img/4a9d68c7d025faae.jpeg"></p>
 <p>ラズパイのホーム画面の左上の赤枠をクリックするか<code>Ctrl</code>+<code>Alt</code>+<code>t</code>のショートカットキーでも起動できます。</p>
 <p>起動したら必要なものをインストールします。パスワードの入力を求められたら、入力してください。</p>
-<p><code>sudo apt updatesudo apt upgrade -ysudo apt install python3-dev python3-pip libatlas-base-dev</code></p>
+<p><code>sudo apt update</code></p>
+<p><code>sudo apt upgrade -y</code></p>
+<p><code>sudo apt install python3-dev python3-pip libatlas-base-dev</code></p>
 <p>すべて終わったら、<code>cd Desktop</code>でデスクトップに移動し、Gitプロジェクトwダウンロードします。</p>
 <p><code>git clone https://jw-fujibayashi:moyashi314%40tmge@github.com/jw-fujibayashi/yolo-tf2-test.git</code></p>
 <p>クローンしたら<code>cd yolo-tf2-test</code>を実行し、また少し設定を行います。</p>
-<p><code>wget &#34;https://raw.githubusercontent.com/PINTO0309/Tensorflow-bin/master/tensorflow-2.2.0-cp37-cp37m-linux_armv7l_download.sh&#34;chmod 764 ./tensorflow-2.2.0-cp37-cp37m-linux_armv7l_download.sh./tensorflow-2.2.0-cp37-cp37m-linux_armv7l_download.shsudo pip3 install tensorflow-1.15.0-cp37-cp37m-linux_armv7l.whlsudo pip3 install -r requirements.txt</code></p>
+<p><code>wget &#34;https://raw.githubusercontent.com/PINTO0309/Tensorflow-bin/master/tensorflow-2.2.0-cp37-cp37m-linux_armv7l_download.sh&#34;</code></p>
+<p><code>chmod 764 ./tensorflow-2.2.0-cp37-cp37m-linux_armv7l_download.sh</code></p>
+<p><code>./tensorflow-2.2.0-cp37-cp37m-linux_armv7l_download.sh</code></p>
+<p><code>sudo pip3 install tensorflow-1.15.0-cp37-cp37m-linux_armv7l.whl</code></p>
+<p><code>sudo pip3 install -r requirements.txt</code></p>
 <p>無事ダウンロードできたら、<a href="https://drive.google.com/open?id=1FvNGTYcpmRwvAkKUUwK4YzLDGmlfUPPs" target="_blank">こちら</a>の重みをダウンロードしてください。3ファイルありますが、3ファイルともダウンロードしてください。</p>
 <p>ダウンロードできたら、ラズパイの<code>yolov2-tf-test</code>の<code>data</code>の<code>weight</code>フォルダーに入れます。</p>
 <pre><code>python3 detect_video.py --video 0 --tiny --weights data/weight/hands.tf

@@ -589,7 +589,9 @@ Duration: 10
 起動したら必要なものをインストールします。パスワードの入力を求められたら、入力してください。
 
 `sudo apt update`
+
 `sudo apt upgrade -y`
+
 `sudo apt install python3-dev python3-pip libatlas-base-dev`
 
 すべて終わったら、`cd Desktop`でデスクトップに移動し、Gitプロジェクトwダウンロードします。
@@ -599,9 +601,13 @@ Duration: 10
 クローンしたら`cd yolo-tf2-test`を実行し、また少し設定を行います。
 
 `wget "https://raw.githubusercontent.com/PINTO0309/Tensorflow-bin/master/tensorflow-2.2.0-cp37-cp37m-linux_armv7l_download.sh"`
+
 `chmod 764 ./tensorflow-2.2.0-cp37-cp37m-linux_armv7l_download.sh`
+
 `./tensorflow-2.2.0-cp37-cp37m-linux_armv7l_download.sh`
+
 `sudo pip3 install tensorflow-1.15.0-cp37-cp37m-linux_armv7l.whl`
+
 `sudo pip3 install -r requirements.txt`
 
 無事ダウンロードできたら、[こちら](https://drive.google.com/open?id=1FvNGTYcpmRwvAkKUUwK4YzLDGmlfUPPs)の重みをダウンロードしてください。3ファイルありますが、3ファイルともダウンロードしてください。
