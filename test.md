@@ -606,7 +606,7 @@ Duration: 10
 
 `./tensorflow-2.2.0-cp37-cp37m-linux_armv7l_download.sh`
 
-`sudo pip3 install tensorflow-1.15.0-cp37-cp37m-linux_armv7l.whl`
+`sudo pip3 install tensorflow-2.2.0-cp37-cp37m-linux_armv7l.whl`
 
 `sudo pip3 install -r requirements.txt`
 
